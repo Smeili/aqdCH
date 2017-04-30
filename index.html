@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <title>Air Quality Data Switzerland</title>
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        <style>
+        body {
+            font: 10px sans-serif;
+        }
+
+        </style>
+    </head>
+    <body>
+        <div id='container'>
+			<select>
+				<option value=NO2>Stickstoffdioxid</option>
+				<option value=O3>Ozon</option>
+				<option value=SO2>Schwefeldioxid</option>
+				<option value=TSP>Schwebestaub insgesamt</option>
+				<option value=NOx>Stickoxide</option>
+				<option value=PM10>Feinstaub PM10</option>
+				<option value=Cd im SN>Cadmium im Staubniederschlag</option>
+				<option value=Pb im SN>Blei im Staubniederschlag</option>
+				<option value=Staubniederschlag (SN)>Staubniederschlag</option>
+				<option value=Tl im SN>Thallium im Staubniederschlag</option>
+				<option value=Zn im SN>Zink im Staubniederschlag</option>
+				<option value=Ammoniak>Ammoniak</option>
+				<option value=EC / Russ>Elementarer Kohlenstoff gemessen gemäss EUSAAR2</option>
+				<option value=Benzol>Benzol</option>
+				<option value=Cd in PM10>Cadmium im Feinstaub</option>
+				<option value=CO>Kohlemonoxid</option>
+				<option value=Partikelanzahl>Partikelanzahlkonzentration</option>
+				<option value=Pb in PM10>Blei im Feinstaub</option>
+				<option value=PM1>Feinstaub PM1</option>
+				<option value=PM2.5>Feinstaub PM2,5</option>
+				<option value=Toluol>Toluol</option>
+				<option value=NMVOC>flüchtige Kohlenwasserstoffe ohne Methan</option>
+			</select>
+
+		</div>
+        <script type="text/javascript">
+		    // set CSV location
+            var fileName = "./airqualitydata.csv";
+						
+			// Read the CSV data into d3
+			d3.csv(fileName, function(error, csv_data) {
+				//D3.js Tips and Tricks: Grouping and summing data using d3.nest: http://www.d3noob.org/2014/02/grouping-and-summing-data-using-d3nest.html
+                //station_id,station_name,area_type_de,station_type_de,pollutant_name_de,pollutant_description_de,aggregation_name_de,limitvalue,year,value,unit_name_de
+				
+				var select = d3.select("body")
+				.append("div")
+				.append("select")
+
+				select
+					.on("change", function(d) {
+					var value = d3.select(this).property("value");
+					alert(value);
+				});
+
+				select.selectAll("option")
+					.data(csv_data)
+					.enter()
+					.append("option")
+					.attr("value", function (d) { return d.pollutant_name_de; })
+					.text(function (d) { return d.pollutant_description_de; });
+
+				
+				var data = d3.nest()
+				.key(function(d) { return d.pollutant_name_de;})
+				//.rollup(function(d) { return d.pollutant_description_de; }).entries(csv_data);
+				.key(function(d) { return d.pollutant_description_de;})
+				.entries(csv_data);
+				//console.log(JSON.stringify(data));
+				console.log(data);
+			});
+			
+			
+			// Handler for dropdown value change
+			var dropdownChange = function() {
+				// Add function
+			};
+
+        </script>
+    </body>
+</html>
