@@ -1,86 +1,377 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <title>Air Quality Data Switzerland</title>
-        <script src="https://d3js.org/d3.v4.min.js"></script>
-        <style>
-        body {
-            font: 10px sans-serif;
+        <meta charset="utf-8" />
+	<title>Exoplanets Paralle Coordinates</title>
+	</head>
+	<body>
+		<script src="js/d3.v3.js"></script>
+		<script src="js/render-queue.js"></script>
+		<link rel="stylesheet" href="css/style.css"></link>
+		<script>
+            
+// Margins for canvas            
+var margin = {top: 80, right: 110, bottom: 10, left: 148},
+    // set width to clientWidth minus margins
+    width = document.body.clientWidth - margin.left - margin.right,
+    height = 340 - margin.top - margin.bottom,
+    innerHeight = height - 2;
+
+// ratio between physical pixel and CSS pixel
+var devicePixelRatio = window.devicePixelRatio || 1;
+
+var color = d3.scale.ordinal()
+  .range(["#DB7F85", "#50AB84", "#4C6C86", "#C47DCB", "#B59248", "#DD6CA7", "#E15E5A", "#5DA5B3", "#725D82", "#54AF52", "#954D56", "#8C92E8", "#D8597D", "#AB9C27", "#D67D4B", "#D58323", "#BA89AD", "#357468", "#8F86C2", "#7D9E33", "#517C3F", "#9D5130", "#5E9ACF", "#776327", "#944F7E"]);
+
+var types = {
+  "Number": {
+    key: "Number",
+    coerce: function(d) { return +d; },
+    extent: d3.extent,
+    within: function(d, extent) { return extent[0] <= d && d <= extent[1]; },
+    defaultScale: d3.scale.linear().range([innerHeight, 0])
+  },
+  "String": {
+    key: "String",
+    coerce: String,
+    extent: function (data) { return data.sort(); },
+    within: function(d, extent, dim) { return extent[0] <= dim.scale(d) && dim.scale(d) <= extent[1]; },
+    defaultScale: d3.scale.ordinal().rangePoints([0, innerHeight])
+  },
+  "Date": {
+    key: "Date",
+    coerce: function(d) { return new Date(d); },
+    extent: d3.extent,
+    within: function(d, extent) { return extent[0] <= d && d <= extent[1]; },
+    defaultScale: d3.time.scale().range([innerHeight, 0])
+  }
+};
+
+var dimensions = [
+  {
+    key: "pl_discmethod",
+    description: "Discovery Method",
+    type: types["String"],
+    axis: d3.svg.axis().orient("left")
+      .tickFormat(function(d,i) {
+        return d;
+      })
+  },
+  {
+    key: "pl_letter",
+    description: "Planet Letter",
+    type: types["String"]
+  },
+  {
+    key: "pl_pnum",
+    description: "Number of Planets in System",
+    type: types["Number"]
+  },
+  {
+    key: "pl_orbper",
+    type: types["Number"],
+    description: "Planet Orbital Period",
+    scale: d3.scale.log().range([innerHeight, 0])
+  },
+  {
+    key: "pl_orbsmax",
+    type: types["Number"],
+    description: "Planet Semi-Major Axis",
+    scale: d3.scale.log().range([innerHeight, 0])
+  },
+  {
+    key: "pl_orbeccen",
+    description: "Planet Eccentricity",
+    type: types["Number"]
+  },
+  {
+    key: "pl_orbincl",
+    description: "Planet Inclination",
+    type: types["Number"]
+  },
+  {
+    key: "pl_bmassj",
+    description: "Mass in Jupiters",
+    type: types["Number"]
+  },
+  {
+    key: "pl_bmassprov",
+    type: types["String"]
+  },
+  {
+    key: "pl_rade",
+    description: "Planet Radius in Earth Radii",
+    type: types["Number"]
+  },
+  {
+    key: "pl_eqt",
+    description: "Planet Equilibrium Temperature (K)",
+    type: types["Number"]
+  },
+  {
+    key: "pl_imppar",
+    description: "Impact Parameter",
+    type: types["Number"]
+  },
+  {
+    key: "pl_trandep",
+    description: "Transit Depth (%)",
+    type: types["Number"]
+  },
+  {
+    key: "pl_trandur",
+    description: "Transit Duration (days)",
+    type: types["Number"]
+  },
+  {
+    key: "pl_ratror",
+    description: "Planet-Star Radius Ratio",
+    type: types["Number"]
+  },
+  {
+    key: "st_spstr",
+    description: "Star Spectral Type",
+    type: types["String"],
+    axis: d3.svg.axis().orient("left")
+      .tickFormat(function(d,i) {
+        if (i % 4) return;
+        return d;
+      })
+  },
+  {
+    key: "pl_locale",
+    type: types["String"]
+  },
+  {
+    key: "pl_disc",
+    description: "Year of Discovery",
+    type: types["Date"]
+  },
+  {
+    key: "pl_facility",
+    description: "Facility",
+    type: types["String"],
+    axis: d3.svg.axis().orient("right")
+      .tickFormat(function(d,i) {
+        return d;
+      })
+  },
+  /*
+  {
+    key: "Total lipid (fat) (g)",
+    type: types["Number"],
+    scale: d3.scale.sqrt().range([innerHeight, 0])
+  },
+  */
+
+];
+
+// defining xScale
+var xscale = d3.scale.ordinal()
+    .domain(d3.range(dimensions.length))
+    .rangePoints([0, width]);
+
+var yAxis = d3.svg.axis()
+    .orient("left");
+
+var container = d3.select("body").append("div")
+    .attr("class", "parcoords")
+    .style("width", width + margin.left + margin.right + "px")
+    .style("height", height + margin.top + margin.bottom + "px");
+
+var svg = container.append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var canvas = container.append("canvas")
+    .attr("width", width * devicePixelRatio)
+    .attr("height", height * devicePixelRatio)
+    .style("width", width + "px")
+    .style("height", height + "px")
+    .style("margin-top", margin.top + "px")
+    .style("margin-left", margin.left + "px");
+
+// ???
+var ctx = canvas.node().getContext("2d");
+ctx.globalCompositeOperation = 'darken';
+ctx.globalAlpha = 0.15;
+ctx.lineWidth = 1.5;
+ctx.scale(devicePixelRatio, devicePixelRatio);
+
+// Table
+var output = d3.select("body").append("pre");
+
+var axes = svg.selectAll(".axis")
+    .data(dimensions)
+    .enter()
+    .append("g")
+    .attr("class", function(d) { return "axis " + d.key.replace(/ /g, "_"); })
+    .attr("transform", function(d,i) { return "translate(" + xscale(i) + ")"; });
+
+d3.csv("data/planets.csv", function(error, data) {
+  if (error) throw error;
+
+  data.forEach(function(d) {
+    dimensions.forEach(function(p) {
+      d[p.key] = !d[p.key] ? null : p.type.coerce(d[p.key]);
+    });
+
+    // truncate long text strings to fit in data table
+    for (var key in d) {
+      if (d[key] && d[key].length > 35) d[key] = d[key].slice(0,36);
+    }
+  });
+
+  // type/dimension default setting happens here
+  dimensions.forEach(function(dim) {
+    if (!("domain" in dim)) {
+      // detect domain using dimension type's extent function
+      dim.domain = d3.functor(dim.type.extent)(data.map(function(d) { return d[dim.key]; }));
+    }
+    if (!("scale" in dim)) {
+      // use type's default scale for dimension
+      dim.scale = dim.type.defaultScale.copy();
+    }
+    dim.scale.domain(dim.domain);
+  });
+
+  var render = renderQueue(draw).rate(30);
+
+  ctx.clearRect(0,0,width,height);
+  ctx.globalAlpha = d3.min([0.85/Math.pow(data.length,0.3),1]);
+  render(data);
+
+  axes.append("g")
+      .each(function(d) {
+        var renderAxis = "axis" in d
+          ? d.axis.scale(d.scale)  // custom axis
+          : yAxis.scale(d.scale);  // default axis
+        d3.select(this).call(renderAxis);
+      })
+    .append("text")
+      .attr("class", "title")
+      .attr("text-anchor", "start")
+      .text(function(d) { return "description" in d ? d.description : d.key; });
+
+  // Add and store a brush for each axis.
+  axes.append("g")
+      .attr("class", "brush")
+      .each(function(d) {
+        d3.select(this).call(d.brush = d3.svg.brush()
+          .y(d.scale)
+          .on("brushstart", brushstart)
+          .on("brush", brush));
+      })
+    .selectAll("rect")
+      .attr("x", -8)
+      .attr("width", 16);
+
+  d3.selectAll(".axis.pl_discmethod .tick text")
+    .style("fill", color);
+    
+  output.text(d3.tsv.format(data.slice(0,24)));
+
+  function project(d) {
+    return dimensions.map(function(p,i) {
+      // check if data element has property and contains a value
+      if (
+        !(p.key in d) ||
+        d[p.key] === null
+      ) return null;
+
+      return [xscale(i),p.scale(d[p.key])];
+    });
+  };
+
+  function draw(d) {
+    ctx.strokeStyle = color(d.pl_discmethod);
+    ctx.beginPath();
+    var coords = project(d);
+    coords.forEach(function(p,i) {
+      // this tricky bit avoids rendering null values as 0
+      if (p === null) {
+        // this bit renders horizontal lines on the previous/next
+        // dimensions, so that sandwiched null values are visible
+        if (i > 0) {
+          var prev = coords[i-1];
+          if (prev !== null) {
+            ctx.moveTo(prev[0],prev[1]);
+            ctx.lineTo(prev[0]+6,prev[1]);
+          }
         }
+        if (i < coords.length-1) {
+          var next = coords[i+1];
+          if (next !== null) {
+            ctx.moveTo(next[0]-6,next[1]);
+          }
+        }
+        return;
+      }
+      
+      if (i == 0) {
+        ctx.moveTo(p[0],p[1]);
+        return;
+      }
 
-        </style>
-    </head>
-    <body>
-        <div id='container'>
-			<select>
-				<option value=NO2>Stickstoffdioxid</option>
-				<option value=O3>Ozon</option>
-				<option value=SO2>Schwefeldioxid</option>
-				<option value=TSP>Schwebestaub insgesamt</option>
-				<option value=NOx>Stickoxide</option>
-				<option value=PM10>Feinstaub PM10</option>
-				<option value=Cd im SN>Cadmium im Staubniederschlag</option>
-				<option value=Pb im SN>Blei im Staubniederschlag</option>
-				<option value=Staubniederschlag (SN)>Staubniederschlag</option>
-				<option value=Tl im SN>Thallium im Staubniederschlag</option>
-				<option value=Zn im SN>Zink im Staubniederschlag</option>
-				<option value=Ammoniak>Ammoniak</option>
-				<option value=EC / Russ>Elementarer Kohlenstoff gemessen gemäss EUSAAR2</option>
-				<option value=Benzol>Benzol</option>
-				<option value=Cd in PM10>Cadmium im Feinstaub</option>
-				<option value=CO>Kohlemonoxid</option>
-				<option value=Partikelanzahl>Partikelanzahlkonzentration</option>
-				<option value=Pb in PM10>Blei im Feinstaub</option>
-				<option value=PM1>Feinstaub PM1</option>
-				<option value=PM2.5>Feinstaub PM2,5</option>
-				<option value=Toluol>Toluol</option>
-				<option value=NMVOC>flüchtige Kohlenwasserstoffe ohne Methan</option>
-			</select>
+      ctx.lineTo(p[0],p[1]);
+    });
+    ctx.stroke();
+  }
 
-		</div>
-        <script type="text/javascript">
-		    // set CSV location
-            var fileName = "./airqualitydata.csv";
-						
-			// Read the CSV data into d3
-			d3.csv(fileName, function(error, csv_data) {
-				//D3.js Tips and Tricks: Grouping and summing data using d3.nest: http://www.d3noob.org/2014/02/grouping-and-summing-data-using-d3nest.html
-                //station_id,station_name,area_type_de,station_type_de,pollutant_name_de,pollutant_description_de,aggregation_name_de,limitvalue,year,value,unit_name_de
-				
-				var select = d3.select("body")
-				.append("div")
-				.append("select")
+  function brushstart() {
+    d3.event.sourceEvent.stopPropagation();
+  }
 
-				select
-					.on("change", function(d) {
-					var value = d3.select(this).property("value");
-					alert(value);
-				});
+  // Handles a brush event, toggling the display of foreground lines.
+  function brush() {
+    var actives = dimensions.filter(function(p) { return !p.brush.empty(); }),
+        extents = actives.map(function(p) { return p.brush.extent(); });
 
-				select.selectAll("option")
-					.data(csv_data)
-					.enter()
-					.append("option")
-					.attr("value", function (d) { return d.pollutant_name_de; })
-					.text(function (d) { return d.pollutant_description_de; });
+    var selected = data.filter(function(d) {
+      if (actives.every(function(dim, i) {
+          // test if point is within extents for each active brush
+          return dim.type.within(d[dim.key], extents[i], dim);
+        })) {
+        return true;
+      }
+    });
 
-				
-				var data = d3.nest()
-				.key(function(d) { return d.pollutant_name_de;})
-				//.rollup(function(d) { return d.pollutant_description_de; }).entries(csv_data);
-				.key(function(d) { return d.pollutant_description_de;})
-				.entries(csv_data);
-				//console.log(JSON.stringify(data));
-				console.log(data);
-			});
-			
-			
-			// Handler for dropdown value change
-			var dropdownChange = function() {
-				// Add function
-			};
+    // show ticks for active brush dimensions
+    // and filter ticks to only those within brush extents
+    svg.selectAll(".axis")
+        .filter(function(d) {
+          return actives.indexOf(d) > -1 ? true : false;
+        })
+        .classed("active", true)
+        .each(function(dimension, i) {
+          var extent = extents[i];
+          d3.select(this)
+            .selectAll(".tick text")
+            .style("display", function(d) {
+              var value = dimension.type.coerce(d);
+              return dimension.type.within(value, extent, dimension) ? null : "none";
+            });
+        });
 
-        </script>
+    // reset dimensions without active brushes
+    svg.selectAll(".axis")
+        .filter(function(d) {
+          return actives.indexOf(d) > -1 ? false : true;
+        })
+        .classed("active", false)
+        .selectAll(".tick text")
+          .style("display", null);
+
+    ctx.clearRect(0,0,width,height);
+    ctx.globalAlpha = d3.min([0.85/Math.pow(selected.length,0.3),1]);
+    render(selected);
+
+    output.text(d3.tsv.format(selected.slice(0,24)));
+  }
+});
+		</script>
+        
     </body>
 </html>
