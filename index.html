@@ -9,12 +9,14 @@
 		<script src="js/render-queue.js"></script>
 		<link rel="stylesheet" href="css/style.css"></link>
 		<script>
+
+var filename = "data/airqualitydata.csv";
             
 // Margins for canvas            
 var margin = {top: 80, right: 110, bottom: 10, left: 148},
     // set width to clientWidth minus margins
     width = document.body.clientWidth - margin.left - margin.right,
-    height = 340 - margin.top - margin.bottom,
+    height = 800 - margin.top - margin.bottom,
     innerHeight = height - 2;
 
 // ratio between physical pixel and CSS pixel
@@ -49,8 +51,8 @@ var types = {
 
 var dimensions = [
   {
-    key: "pl_discmethod",
-    description: "Discovery Method",
+    key: "station_canton",
+    description: "Kanton",
     type: types["String"],
     axis: d3.svg.axis().orient("left")
       .tickFormat(function(d,i) {
@@ -58,77 +60,140 @@ var dimensions = [
       })
   },
   {
-    key: "pl_letter",
-    description: "Planet Letter",
-    type: types["String"]
+    key: "area_type_de",
+    description: "area_type_de",
+    type: types["String"],
+    axis: d3.svg.axis().orient("left")
+      .tickFormat(function(d,i) {
+        return d;
+      })
   },
   {
-    key: "pl_pnum",
-    description: "Number of Planets in System",
+    key: "station_type_de",
+    description: "station_type_de",
+    type: types["String"],
+    axis: d3.svg.axis().orient("left")
+      .tickFormat(function(d,i) {
+        return d;
+      })
+  },
+  {
+    key: "NO2",
+    description: "Stickstoffdioxid (µg/m3)",
     type: types["Number"]
   },
   {
-    key: "pl_orbper",
-    type: types["Number"],
-    description: "Planet Orbital Period",
-    scale: d3.scale.log().range([innerHeight, 0])
-  },
-  {
-    key: "pl_orbsmax",
-    type: types["Number"],
-    description: "Planet Semi-Major Axis",
-    scale: d3.scale.log().range([innerHeight, 0])
-  },
-  {
-    key: "pl_orbeccen",
-    description: "Planet Eccentricity",
+    key: "SO2",
+    description: "Schwefeldioxid (µg/m3)",
     type: types["Number"]
   },
   {
-    key: "pl_orbincl",
-    description: "Planet Inclination",
+    key: "TSP",
+    description: "Schwebestaub insgesamt (µg/m3)",
     type: types["Number"]
   },
   {
-    key: "pl_bmassj",
-    description: "Mass in Jupiters",
+    key: "NOx",
+    description: "Stickoxide (ppb)",
     type: types["Number"]
   },
   {
-    key: "pl_bmassprov",
-    type: types["String"]
-  },
-  {
-    key: "pl_rade",
-    description: "Planet Radius in Earth Radii",
+    key: "O3",
+    description: "Ozon (µg/m3)",
     type: types["Number"]
   },
   {
-    key: "pl_eqt",
-    description: "Planet Equilibrium Temperature (K)",
+    key: "PM10",
+    description: "Feinstaub PM10 (µg/m3)",
     type: types["Number"]
   },
   {
-    key: "pl_imppar",
-    description: "Impact Parameter",
+    key: "Cd im SN",
+    description: "Cadmium im Staubniederschlag (µg/(m²·d))",
     type: types["Number"]
   },
   {
-    key: "pl_trandep",
-    description: "Transit Depth (%)",
+    key: "Pb im SN",
+    description: "Blei im Staubniederschlag (µg/(m²·d))",
     type: types["Number"]
   },
   {
-    key: "pl_trandur",
-    description: "Transit Duration (days)",
+    key: "Staubniederschlag (SN)",
+    description: "Staubniederschlag (mg/(m²·d))",
     type: types["Number"]
   },
   {
-    key: "pl_ratror",
-    description: "Planet-Star Radius Ratio",
+    key: "Tl im SN",
+    description: "Thallium im Staubniederschlag (µg/(m²·d))",
     type: types["Number"]
   },
   {
+    key: "Zn im SN",
+    description: "Zink im Staubniederschlag (µg/(m²·d))",
+    type: types["Number"]
+  },
+  {
+    key: "Ammoniak",
+    description: "Ammoniak (µg/m3)",
+    type: types["Number"]
+  },
+  {
+    key: "EC / Russ",
+    description: "Elementarer Kohlenstoff gemessen gemäss EUSAAR2 (µg/m3)",
+    type: types["Number"]
+  },
+  {
+    key: "Benzol",
+    description: "Benzol (µg/m3)",
+    type: types["Number"]
+  },
+  {
+    key: "Cd in PM10",
+    description: "Cadmium im Feinstaub (ng/m3)",
+    type: types["Number"]
+  },
+  {
+    key: "CO",
+    description: "Kohlemonoxid (mg/m3)",
+    type: types["Number"]
+  },
+  {
+    key: "Partikelanzahl",
+    description: "Partikelanzahlkonzentration (1/cm3)",
+    type: types["Number"]
+  },
+  {
+    key: "Pb in PM10",
+    description: "Blei im Feinstaub (ng/m3)",
+    type: types["Number"]
+  },
+  {
+    key: "PM1",
+    description: "Feinstaub PM1 (µg/m3)",
+    type: types["Number"]
+  },
+  {
+    key: "PM2.5",
+    description: "Feinstaub PM2,5 (µg/m3)",
+    type: types["Number"]
+  },
+  {
+    key: "Toluol",
+    description: "Toluol (µg/m3)",
+    type: types["Number"]
+  },
+  {
+    key: "NMVOC",
+    description: "flüchtige Kohlenwasserstoffe ohne Methan (µg CH4/m3)",
+    type: types["Number"]
+  },
+  {
+    key: "year",
+    description: "Jahr",
+    type: types["Date"]
+  }
+  
+  /*{
     key: "st_spstr",
     description: "Star Spectral Type",
     type: types["String"],
@@ -137,26 +202,7 @@ var dimensions = [
         if (i % 4) return;
         return d;
       })
-  },
-  {
-    key: "pl_locale",
-    type: types["String"]
-  },
-  {
-    key: "pl_disc",
-    description: "Year of Discovery",
-    type: types["Date"]
-  },
-  {
-    key: "pl_facility",
-    description: "Facility",
-    type: types["String"],
-    axis: d3.svg.axis().orient("right")
-      .tickFormat(function(d,i) {
-        return d;
-      })
-  },
-  /*
+  }
   {
     key: "Total lipid (fat) (g)",
     type: types["Number"],
@@ -210,7 +256,7 @@ var axes = svg.selectAll(".axis")
     .attr("class", function(d) { return "axis " + d.key.replace(/ /g, "_"); })
     .attr("transform", function(d,i) { return "translate(" + xscale(i) + ")"; });
 
-d3.csv("data/planets.csv", function(error, data) {
+d3.csv(filename, function(error, data) {
   if (error) throw error;
 
   data.forEach(function(d) {
@@ -268,7 +314,7 @@ d3.csv("data/planets.csv", function(error, data) {
       .attr("x", -8)
       .attr("width", 16);
 
-  d3.selectAll(".axis.pl_discmethod .tick text")
+  d3.selectAll(".axis.station_canton .tick text")
     .style("fill", color);
     
   output.text(d3.tsv.format(data.slice(0,24)));
@@ -286,7 +332,7 @@ d3.csv("data/planets.csv", function(error, data) {
   };
 
   function draw(d) {
-    ctx.strokeStyle = color(d.pl_discmethod);
+    ctx.strokeStyle = color(d.station_canton);
     ctx.beginPath();
     var coords = project(d);
     coords.forEach(function(p,i) {
