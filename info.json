@@ -1,0 +1,11 @@
+{
+"title": "airqualitydata switzerland",
+"description": "Auf dieser Webseite werden für ein Projekt der Universität Bern mittels einer interaktiven Visualisierung die Luftqualitätsdaten der Schweiz präsentiert. Vom Bundesamt für Umwelt (BAFU) wurden von 1984 bis 2015 diverse Luftschadstoffe an verschiedenen Standorten in der Schweiz gemessen. Die Schritte, wie zu dieser Visualisierung gefunden wurde, sind genau dokumentiert, sowie wurde eine Interpretation zu den entsprechenden Daten vorgenommen. ",
+"authors": [
+    {"name": "Stefanie Meili", "email": "meili.stefanie@gmail.com"}
+   
+],
+"date": "2017-06-01",
+"category": "environment",
+"software_license": "zum Beispiel: GNU General Public License v3"
+}
