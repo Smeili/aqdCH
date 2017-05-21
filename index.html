@@ -10,7 +10,11 @@
     <meta name="author" content="">
 
     <title>Luftqualität Schweiz</title>
-	
+    
+    <!-- favicon -->
+	<link rel="icon" type="image/png" href="clouded.png" />
+          
+    
 	<!-- D3 CSS -->
 	<link href="css/style.css" rel="stylesheet" type="text/css">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:700" rel="stylesheet">
@@ -59,10 +63,13 @@
                         <a href="#visualization">Visualisierung</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#about">Vorgehen</a>
+                        <a href="#about">Funktion</a>
                     </li>
 					<li class="page-scroll">
                         <a href="#approach">Vorgehen</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#interpretation">Interpretation</a>
                     </li>
                     <li class="page-scroll">
                         <a href="#contact">Kontakt</a>
@@ -81,9 +88,10 @@
                 <div class="col-lg-12">
                     <!--<img class="img-responsive" src="img/profile.png" alt="">-->
                     <div class="intro-text">
-                        <h1 class="name">Start Bootstrap</h1>
-                        <!--<hr class="star-light">-->
-                        <span class="skills">Web Developer - Graphic Artist - User Experience Designer</span>
+                        <h1 class="name">Luftqualität in der Schweiz</h1>
+                        <hr class="star-light">
+                        <span class="skills">Eine Visualisierung der Luftschadstoffe von 1984 bis 2015</span>
+                        <p>Willkommen auf meiner Plattform zur Visualisierung der Luftqualitätsdaten in der Schweiz. Für ein Projekt der Universität Bern habe ich mittels einer interaktiven Visualisierung die Luftqualitätsdaten der Schweiz abgebildet. Vom Bundesamt für Umwelt (BAFU) wurden von 1984 bis 2015 diverse Luftschadstoffe an verschiedenen Standorten in der Schweiz gemessen. Die Schritte, wie zu dieser Visualisierung gefunden wurde, sind genau dokumentiert, sowie wurde eine Interpretation zu den entsprechenden Daten vorgenommen.</p>
                     </div>
                 </div>
             </div>
@@ -118,7 +126,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>About</h2>
+                    <h2>Funktion</h2>
                     <hr class="star-light">
                 </div>
             </div>
@@ -148,7 +156,23 @@
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Freelancer is a free bootstrap theme created by Start Bootstrap. The download includes the complete source files including HTML, CSS, and JavaScript as well as optional LESS stylesheets for easy customization.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a,</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    	
+    <!-- Approach Section -->
+    <section id="interpretation">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Interpretation</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a,</p>
                 </div>
             </div>
         </div>
@@ -159,14 +183,11 @@
         <div class="footer-above">
             <div class="container">
                 <div class="row">
-                    <div class="footer-col col-md-6">
-                        <h3>Location</h3>
-                        <p>3481 Melrose Place
-                            <br>Beverly Hills, CA 90210</p>
-                    </div>
-                    <div class="footer-col col-md-6">
-                        <h3>About Freelancer</h3>
-                        <p>Freelance is a free to use, open source Bootstrap theme created by <a href="http://startbootstrap.com">Start Bootstrap</a>.</p>
+                    <div class="footer-col col-md-12">
+                        <h3>Kontakt</h3>
+                        <p>Stefanie Meili</p>
+                            <p>Studentin MSc Business Administration, Universität Bern</p>
+                        <a href="mailto: "meili.stefanie@gmail.com">E-Mail</a>
                     </div>
                 </div>
             </div>
@@ -207,7 +228,7 @@
     <!-- Theme JavaScript -->
     <script src="js/freelancer.min.js"></script>
 
-		<!-- D3 JS -->
+    <!-- D3 JS ***********************************************************************************************************************-->
 	<script src="js/d3.v3.js"></script>
 	<script src="js/render-queue.js"></script>
 	
@@ -215,10 +236,10 @@
 	  var filename = "data/airqualitydata.csv";
 			 
 		// Margins for canvas            
-		var margin = {top: 120, right: 130, bottom: 10, left: 80},
+		var margin = {top: 120, right: 80, bottom: 10, left: 80},
 			 // set width to clientWidth minus margins
 			 width = document.body.clientWidth - margin.left - margin.right,
-			 height = 800 - margin.top - margin.bottom,
+			 height = 600 - margin.top - margin.bottom,
 			 innerHeight = height - 2;
 
 		// ratio between physical pixel and CSS pixel
@@ -393,10 +414,11 @@
 		  {
 			 key: "year",
 			 description: "Jahr",
-			 type: types["Date"]
+			 type: types["Date"],
+             axis: d3.svg.axis().orient("right")
 			   
 		  }
-		  
+        		  
 		  /*{
 			 key: "st_spstr",
 			 description: "Star Spectral Type",
