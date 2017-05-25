@@ -65,8 +65,11 @@
                     <li class="page-scroll">
                         <a href="#about">Funktion</a>
                     </li>
+                    <li class="page-scroll">
+                        <a href="#story">Vorgehen</a>
+                    </li>
 					<li class="page-scroll">
-                        <a href="#approach">Vorgehen</a>
+                        <a href="#approach">Daten</a>
                     </li>
                     <li class="page-scroll">
                         <a href="#interpretation">Interpretation</a>
@@ -177,14 +180,30 @@
         </div>
     </section>
 	
+        <!-- story Section -->
+    <section id="story">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Vorgehen</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a,</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
 	<!-- Approach Section -->
     <section id="approach">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>Vorgehen</h2>
+                    <h2>Daten</h2>
                     <div class="col-lg-8 col-lg-offset-2 text-center">
-                                            
+                    <br>                        
 
             <!-- Button to download data -->
                  <div class="col-lg-8 col-lg-offset-2 text-center">
@@ -199,7 +218,106 @@
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a,</p>
+                    <br>
+                    <p>Das Datenset, welches vom Bundesamt für Umwelt (BAFU) zur Verfügung gestellt wurde und auch öffentlich zugänglich ist, enthält 68'433 Messeinträge über die Jahre 1984 bis 2015 verteilt. An 215 Stationen in der Schweiz wurden Schadstoffe in der Luft gemessen. In dieser Visualisierung wurden die Jahresmittelwerte der Schadstoffe herausgefiltert, da nur in dieser Skala alle 22 Schadstoffe vorhanden waren. Nach der Filterung mittels Excel waren noch 16'738 gemessene Werte an 208 Standorten vorhanden. In der folgenden Grafik wird abgebildet, wie viele Messungen pro Station erfolgten. Wie man sieht, gibt es grosse Unterschiede zwischen den Anzahl Messungen pro Standort.</p>
+                    <br>
+                    <div class="col-lg-12 text-center">
+                    <h3>Anzahl Messungen pro Station</h3>
+                    <img src="stations.png" alt="Stations" width=100%>
+                    </div>
+                    <br>
+                    <p>Nicht über alle Jahre wurden alle Schadstoffe an allen Standorten gemessen. Daher fehlen einige Werte in der Visualisierung. Fehlende Werte wurden nicht eingezeichnet mit einer Verbindungslinie in der Visualisierung. Anhand der folgenden Grafik wird ersichtlich, wie viele Messungen pro Schadstoffe erfolgten. Stickstoffdioxid und Ozon wurden deutlich am häufigsten gemessen. Aus diesem Grunde erscheinen auf diesen beiden Achsen in der Visualisierung die die meisten Verbindungslinien. Von Feinstaub PM1 und den flüchtigen Kohlenwasserstoffen ohne Methan erfolgte hingegen selten eine Messung.</p>
+                    <br>
+                    <div class="col-lg-12 text-center">
+                    <h3>Anzahl Messungen pro Schadstoff</h3>
+                    <img src="pollutants.png" alt="Pollutants" width=100%>
+                    </div>
+                    <br>
+                    <p>In einem weiteren Schritt wird zum Verständnis zu allen Schadstoffen eine kurze Zusammenfassung geliefert, bevor eine Analyse der visualisierten Daten vorgenommen wird.</p>
+                    <br>
+                    
+        <!-- Table for air pollutants -->            
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>Luftschadstoff</th>
+                          <th>Symbol</th>
+                          <th>Beschreibung</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Ammoniak</td>
+                            <td>NH3</td>
+                          <td>Ammoniak ist ein stark stechend riechendes, farbloses und giftiges Gas. Es reagiert in der Atmosphäre mit anderen Gasen zu gesundheitswirksamen Partikeln (sekundär gebildeter Feinstaub) oder lagert sich in Ökosystemen ab, worauf es zu akuten Schäden in der Vegetation kommt.</td>
+                          
+                        </tr>
+                        <tr>
+
+                          <td>Benzol</td>
+                            <td>C6H6</td>
+                          <td>Benzol ist eine organische, chemische Verbindung. Sie wirkt krebserregend. Im Benzin für Kraftfahrzeuge ist Benzol enthalten. Auch stammt es aus Feuerungen, Heizungen, sowie Tabakrauch. </td>
+                    
+                        </tr>
+                        <tr>
+
+                          <td>Blei</td>
+                            <td>Pb</td>
+                          <td>Blei ist ein giftiges Schwermetall. Es stammt aus Strassen- und Flugverkehr, Abfallverbrennungen, Korrosionsschutzarbeiten und bleihaltiger Munition. Es führt zur Schädigung der Fauna und Flora, sowie zu Beeinträchtigungen der Blutbildung und Entwicklung von Kindern.</td>                       
+                        </tr>
+                        <tr>
+                          <td>Cadmium</td>
+                          <td>Cd</td>
+                          <td>Cadmium ist ein toxisches Schwermetall. Es stammt unter anderem aus Abfallverbrennungen, Stahlwerken und Industriefeuerungen. In bioverfügbarer Form ist es krebserregend, es ist giftig für Pflanzen und Mikroorganismen, sowie wirkt es toxisch für Mensch und Tier bei chronischer Belastung in geringen Mengen.</td>
+                        </tr>                         
+                        <tr>
+                          <td>Feinstaub</td>
+                          <td>PM10</td>
+                          <td>Feinstaub sind feste und flüssige Teilchen mit einem Durchmesser von weniger als 10 Mikrometer. Die Zusammensetzung besteht aus Schwermetallen, Sulfat, Nitrat, Ammonium, organischer Kohlenstoff, polyzyklische aromatische Kohlenwasserstoffe, Dioxine und Furane. Er stammt aus dem Strassen- und Schienenverkehr, Landwirtschaft, Industrie, Baustellen und Feuerungen. Feinstaub fördert Erkrankungen der Atemwege und des Herz-Kreislauf-Systems und erhöht das Krebsrisiko.</td>
+                        </tr>
+                        <tr>
+                          <td>Flüchtige Kohlenwasserstoffe ohne Methan</td>
+                          <td>NMVOC</td>
+                          <td>Das sind organische Verbindungen und sind teils natürlichen Ursprungs oder stammen aus dem motorisierten Strassenverkehr und Industrien. Sie wirken krebserregend und sind mitverantwortlich für den Treibhauseffekt.</td>
+                        </tr>
+                         <tr>
+                          <td>Kohlenmonoxid</td>
+                          <td>CO</td>
+                          <td>Kohlenmonoxid ist ein farb- und geruchloses Gas, das bei der unvollständigen Verbrennung von Brenn- und Treibstoffen entsteht. In höheren Konzentrationen wirkt es als starkes Atem Gift und beeinträchtigt die Sauerstoffaufnahme von Menschen und Tieren. Es ist mitverantwortlich für den Treibhauseffekt.</td>
+                        </tr>
+                        <tr>
+                          <td>Ozon</td>
+                          <td>O3</td>
+                          <td>Ozon ist ein farbloses und giftiges Gas. In Bodennähe wird es nicht direkt freigesetzt, sondern aus flüchtigen, organischen Verbindungen unter intensiver Sonneneinstrahlung gebildet. Es stammt aus dem motorisierten Strassenverkehr und industriellen Prozessen. Ozon reizt die Schleimhaut der Atemwege und vermindert die Leistungsfähigkeit der Lungen, sowie verursacht es eine Schädigung der Pflanzen. Ozon ist mitverantwortlich für den Treibhauseffekt.</td>
+                        </tr>
+                        <tr>
+                          <td>Schwefeldioxid </td>
+                          <td>SO2</td>
+                          <td>Das ist ein farbloses, stechend riechendes Gas, das Mensch und Umwelt beeinträchtigt. Schwefeldioxid kann eine Erkrankung der Atemwege verursachen und eine Reizung von Augen, Atmungsorgangen und Haut hervorrufen. Es stammt aus Industrie- und Hausfeuerungen, sowie Vulkanausbrüchen.</td>
+                        </tr>
+                        <tr>
+                          <td>Staubniederschlag </td>
+                          <td>SN</td>
+                          <td>Als Staubniederschlag wird die Ablagerung von Stoffen, die als trockener Staub zusammen mit Regenwasser oder als gasförmige Bestandteile aus der Luft auf Oberflächen gelangen. Früher galt er als sichtbares Zeichen für die Luftverschmutzung.</td>
+                        </tr>
+                        <tr>
+                          <td>Stickoxide </td>
+                          <td>NOx</td>
+                          <td>Das ist ein Sammelbegriff für verschiedene gasförmige Verbindungen. Dazu zählen Stickstoffmonoxid (NO) und Stickstoffdioxid (NO2). Sie führen zu einer Vielzahl von negativen Umwelteinwirkungen. Stickstoffoxide stammen hauptsächlich aus dem motorisiertem Strassenverkehr und Feuerungen.</td>
+                        </tr>
+                        <tr>
+                          <td>Toluol</td>
+                          <td>C7H8</td>
+                          <td>Toluol ist eine farblose, charakteristisch riechende flüchtige Flüssigkeit. Sie stammt aus dem motorisierten Strassenverkehr, Verdunstung von Treib- und Brennstoffen, sowie aus der Industrie. Toluol wirkt gesundheitsschädlich.</td>
+                        </tr>
+                        <tr>
+                          <td>Zink im Staubniederschlag </td>
+                          <td>ZN im SN</td>
+                          <td>Zink zählt zu den Schwermetallen. Es stammt aus der Abfallverbrennung, Stahlwerken, Industrie- und anderen Abwässer und dem motorisiertem Strassenverkehr. Es wirkt in hoher Konzentration toxisch und beeinträchtigt das Pflanzenwachstum.</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    
                 </div>
             </div>
         </div>
@@ -458,7 +576,7 @@
 		  {
 			 key: "year",
 			 description: "Jahr",
-			 type: types["Date"],
+			 type: types["Number"],
              axis: d3.svg.axis().orient("right")
 			   
 		  }
