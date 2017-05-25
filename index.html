@@ -88,10 +88,12 @@
                 <div class="col-lg-12">
                     <!--<img class="img-responsive" src="img/profile.png" alt="">-->
                     <div class="intro-text">
-                        <h1 class="name">Luftqualität in der Schweiz</h1>
+                        <h1 class="name">Open Data Visualisierung</h1>
                         <hr class="star-light">
-                        <span class="skills">Eine Visualisierung der Luftschadstoffe von 1984 bis 2015</span>
-                        <p>Willkommen auf meiner Plattform zur Visualisierung der Luftqualitätsdaten in der Schweiz. Für ein Projekt der Universität Bern habe ich mittels einer interaktiven Visualisierung die Luftqualitätsdaten der Schweiz abgebildet. Vom Bundesamt für Umwelt (BAFU) wurden von 1984 bis 2015 diverse Luftschadstoffe an verschiedenen Standorten in der Schweiz gemessen. Die Schritte, wie zu dieser Visualisierung gefunden wurde, sind genau dokumentiert, sowie wurde eine Interpretation zu den entsprechenden Daten vorgenommen.</p>
+                        <span class="skills">Eine Visualisierung der Luftschadstoffe in der Schweiz von 1984 bis 2015</span>
+                        <br>
+                        <br>
+                        <p>Willkommen auf meiner Plattform zur Visualisierung der Luftqualitätsdaten in der Schweiz. Für ein Projekt der Universität Bern habe ich mittels einer interaktiven Visualisierung die Luftqualitätsdaten der Schweiz abgebildet. Vom Bundesamt für Umwelt (BAFU) wurden von 1984 bis 2015 diverse Luftschadstoffe an verschiedenen Standorten in der Schweiz gemessen. Die Funktionsweise und Schritte, wie zu dieser Visualisierung gefunden wurde, sind genau dokumentiert, sowie wurde eine Interpretation zu den entsprechenden Daten vorgenommen.</p>
                     </div>
                 </div>
             </div>
@@ -108,6 +110,9 @@
 				<div class="col-lg-8 col-lg-offset-2 text-center">
                     <p>von 1984 bis 2015</p>
                 </div>
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <p>dargestellt werden die Jahresmittelwerte</p>
+                </div>
 				<div class="col-lg-8 col-lg-offset-2 text-center">
                     <button type="submit" class="btn btn-success btn-lg">Reset</button>
                 </div>
@@ -121,7 +126,7 @@
         </div>
     </section>
 	
-    <!-- About Section -->
+    <!-- About/Funktions Section -->
     <section class="success" id="about">
         <div class="container">
             <div class="row">
@@ -131,11 +136,37 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-lg-offset-2">
-                    <p>Freelancer is a free bootstrap theme created by Start Bootstrap. The download includes the complete source files including HTML, CSS, and JavaScript as well as optional LESS stylesheets for easy customization.</p>
-                </div>
-                <div class="col-lg-4">
-                    <p>Whether you're a student looking to showcase your work, a professional looking to attract clients, or a graphic artist looking to share your projects, this template is the perfect starting point!</p>
+                <div class="col-lg-12">
+                    <p>Diese Visualisierung besteht aus zwei Teilen, der grafischen interaktiven Darstellung, sowie der sich anpassenden Tabelle mit genauen Informationen.</p>
+                    <ol>
+                    <li>In der grafischen Darstellung oben, in der linken Achse bei Markierung «1» werden die Messstationen zu Kantonen zusammengefasst abgebildet. Es ist jedoch nicht so, dass nur pro Kanton Werte ausfallen, sondern gehen pro Kanton mehrere Linien aus und unten in der Tabelle wird die genaue Messstation angegeben.</li>
+                    <li>In der zweiten Achse von links wird der «area type» angegeben. Die Messstationen werden einem der vier Umgebungs-Typen «Hochgebirge», «Ländlich», Städtisch oder Vorstädtisch zugeteilt.</li>
+                    <li>In der dritten Achse von Links wird der «station type» angegeben. Hier werden die Messstationen einem der drei Stations Typen «Hintergrund, Industrie oder Verkehr zugeordnet.</li>
+                    <li>Anschliessend sind die 22 Luftschadstoffe (inkl. Ihrer Einheit) genannt.</li>
+                    <li>Auf der Achse ganz rechts sind zuletzt die Jahre aufgelistet, in denen die Messungen erfolgten.</li>
+                    </ol>
+                    <img src="steps.png" alt="Steps" width=100%>
+                    <br>
+                    <br>
+                    <p>In der Tabelle unter der graphischen Abbildung werden alle Informationen und Werte genau angeben. Die Tabelle wird angepasst, je nach dem wie in der interaktiven Applikation gefiltert wird. Wird beispielsweise nur der Kanton Zürich, im Jahre 2010 angewählt, so werden nur diese Informationen in der Tabelle angezeigt. In einem kurzen Tutorial wird erläutert, wie gefiltert werden kann. Viel Spass dabei!</p>
+                    <br>
+                    
+                    <!-- Tutorial and explanation how to use the application -->            
+                    
+                    <h3>Tutorial zur Funktionsweise der Applikation</h3>
+                    <p>Um sich einen Überblick über die Daten zu verschaffen, gibt es mehrere Funktionen, wie gefiltert, geschoben und herumgespielt werden kann. Die kurze Aufzeichnung soll mögliche Beispiele veranschaulichen.</p>
+                    <video width=100% controls>
+                    <source src="video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                    </video>
+                    <ul>
+                    <li>Fährst du über eine Achse, so erscheint sie dunkel und dein Cursor verwandelt sich in ein schwarzes Kreuz.</li>
+                    <li>Mit diesem schwarzen Cursor kannst du nun auf der Achse auf der du dich befindest, Daten filtern, indem du die gewünschten Werte markierst.</li>
+                    <li>Du kannst den angewählten Bereich nach oben oder nach unten verschieben, indem du den markierten Bereich packst.</li>
+                    <li>Auch kannst du den angewählten Bereich verkleinern oder vergrössern, wenn du oben am angewählten Bereich mit dem Pfeil-Cursor nach oben oder unten fährst.</li>
+                    <li>Um die Filterfunktion wieder aufzuheben, musst du ober- oder unterhalb der gefilterten Stelle mit dem schwarzen Kreuz-Cursor ins Leere klicken.</li>
+                    <li>Du kannst auf jeder Achse einen Filter gleichzeitig setzen. Um mehrere Filter aufzuheben, musst du bei den Filtermodus bei den gewünschten Achsen mit dem gleichen Prinzip einzel aufheben.</li>
+                    </ul>
                 </div>
                 <div class="col-lg-8 col-lg-offset-2 text-center">
                     <a href="#" class="btn btn-lg btn-outline">
@@ -152,6 +183,18 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2>Vorgehen</h2>
+                    <div class="col-lg-8 col-lg-offset-2 text-center">
+                                            
+
+            <!-- Button to download data -->
+                 <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <a href="https://www.ubst.bafu.admin.ch/opendata/UBD0028.ods" button type="submit" class="btn btn-success btn-lg">
+                        <i class="fa fa-download"></i> Rohdaten herunterladen
+                    </a>
+                </div>
+
+                    
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -187,7 +230,8 @@
                         <h3>Kontakt</h3>
                         <p>Stefanie Meili</p>
                             <p>Studentin MSc Business Administration, Universität Bern</p>
-                        <a href="mailto: "meili.stefanie@gmail.com">E-Mail</a>
+                    
+                     <a href=mailto:sm.opendata@gmail.com>E-Mail</a>
                     </div>
                 </div>
             </div>
@@ -473,7 +517,7 @@
 		ctx.scale(devicePixelRatio, devicePixelRatio);
 
 		// Table
-		var output = d3.select("#tablediv").append("pre");
+       	var output = d3.select("#tablediv").append("pre");
 
 		var axes = svg.selectAll(".axis")
 			 .data(dimensions)
