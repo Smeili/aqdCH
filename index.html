@@ -410,6 +410,25 @@
 		var color = d3.scale.ordinal()
 		  .range(["#DB7F85", "#50AB84", "#4C6C86", "#C47DCB", "#B59248", "#DD6CA7", "#E15E5A", "#5DA5B3", "#725D82", "#54AF52", "#954D56", "#8C92E8", "#D8597D", "#AB9C27", "#D67D4B", "#D58323", "#BA89AD", "#357468", "#8F86C2", "#7D9E33", "#517C3F", "#9D5130", "#5E9ACF", "#776327", "#944F7E"]);
 
+        // define Swiss locales
+        var de_CH = d3.locale({
+            'decimal': '.',
+            'thousands': '\'',
+            'grouping': [3],
+            'currency': ['CHF', ''],
+            'dateTime': '%A, %d.%m.%Y, %X Uhr',
+            'date': '%d.%m.%Y',
+            'time': '%H:%M:%S',
+            'periods': ['AM', 'PM'],
+            'days': ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
+            'shortDays': ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
+            'months': ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
+            'shortMonths': ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez']
+        });
+        
+        // set Swiss locales for numbers
+        d3.format = de_CH.numberFormat;
+        
 		var types = {
 		  "Number": {
 			 key: "Number",
@@ -578,7 +597,7 @@
 			 description: "Jahr",
 			 type: types["Number"],
              axis: d3.svg.axis().orient("right")
-			   
+			     .tickFormat(de_CH.numberFormat("d"))
 		  }
         		  
 		  /*{
