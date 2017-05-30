@@ -94,3 +94,15 @@ pre {
   font-size: 10px;
   overflow: auto;
 }
+
+.img-responsive {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: auto;
+}
+
+.listsize {
+    font-size: 20px;
+}

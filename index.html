@@ -89,7 +89,6 @@
         <div class="container" id="maincontent" tabindex="-1">
             <div class="row">
                 <div class="col-lg-12">
-                    <!--<img class="img-responsive" src="img/profile.png" alt="">-->
                     <div class="intro-text">
                         <h1 class="name">Open Data Visualisierung</h1>
                         <hr class="star-light">
@@ -116,9 +115,7 @@
                 <div class="col-lg-8 col-lg-offset-2 text-center">
                     <p>dargestellt werden die Jahresmittelwerte</p>
                 </div>
-				<div class="col-lg-8 col-lg-offset-2 text-center">
-                    <button type="submit" class="btn btn-success btn-lg">Reset</button>
-                </div>
+
             </div>
 			<div class="row">
 				<div class="col-lg-12" id="figurediv"></div>
@@ -135,20 +132,20 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2>Funktion</h2>
-                    <hr class="star-light">
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-12">
+                    <br>
                     <p>Diese Visualisierung besteht aus zwei Teilen, der grafischen interaktiven Darstellung, sowie der sich anpassenden Tabelle mit genauen Informationen.</p>
-                    <ol>
+                    <ol class="listsize">
                     <li>In der grafischen Darstellung oben, in der linken Achse bei Markierung «1» werden die Messstationen zu Kantonen zusammengefasst abgebildet. Es ist jedoch nicht so, dass nur pro Kanton Werte ausfallen, sondern gehen pro Kanton mehrere Linien aus und unten in der Tabelle wird die genaue Messstation angegeben.</li>
                     <li>In der zweiten Achse von links wird der «area type» angegeben. Die Messstationen werden einem der vier Umgebungs-Typen «Hochgebirge», «Ländlich», Städtisch oder Vorstädtisch zugeteilt.</li>
                     <li>In der dritten Achse von Links wird der «station type» angegeben. Hier werden die Messstationen einem der drei Stations Typen «Hintergrund, Industrie oder Verkehr zugeordnet.</li>
                     <li>Anschliessend sind die 22 Luftschadstoffe (inkl. Ihrer Einheit) genannt.</li>
                     <li>Auf der Achse ganz rechts sind zuletzt die Jahre aufgelistet, in denen die Messungen erfolgten.</li>
                     </ol>
-                    <img src="steps.png" alt="Steps" width=100%>
+                    <img src="img/steps_1140.png" alt="Steps" class="img-responsive" />
                     <br>
                     <br>
                     <p>In der Tabelle unter der graphischen Abbildung werden alle Informationen und Werte genau angeben. Die Tabelle wird angepasst, je nach dem wie in der interaktiven Applikation gefiltert wird. Wird beispielsweise nur der Kanton Zürich, im Jahre 2010 angewählt, so werden nur diese Informationen in der Tabelle angezeigt. In einem kurzen Tutorial wird erläutert, wie gefiltert werden kann. Viel Spass dabei!</p>
@@ -162,7 +159,9 @@
                     <source src="video.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                     </video>
-                    <ul>
+                    <br>
+                    <br>
+                    <ul class="listsize">
                     <li>Fährst du über eine Achse, so erscheint sie dunkel und dein Cursor verwandelt sich in ein schwarzes Kreuz.</li>
                     <li>Mit diesem schwarzen Cursor kannst du nun auf der Achse auf der du dich befindest, Daten filtern, indem du die gewünschten Werte markierst.</li>
                     <li>Du kannst den angewählten Bereich nach oben oder nach unten verschieben, indem du den markierten Bereich packst.</li>
@@ -170,11 +169,6 @@
                     <li>Um die Filterfunktion wieder aufzuheben, musst du ober- oder unterhalb der gefilterten Stelle mit dem schwarzen Kreuz-Cursor ins Leere klicken.</li>
                     <li>Du kannst auf jeder Achse einen Filter gleichzeitig setzen. Um mehrere Filter aufzuheben, musst du bei den Filtermodus bei den gewünschten Achsen mit dem gleichen Prinzip einzel aufheben.</li>
                     </ul>
-                </div>
-                <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <a href="#" class="btn btn-lg btn-outline">
-                        <i class="fa fa-download"></i> Download Theme
-                    </a>
                 </div>
             </div>
         </div>
@@ -190,6 +184,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-12">
+                    <br>
                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a,</p>
                 </div>
             </div>
@@ -223,14 +218,14 @@
                     <br>
                     <div class="col-lg-12 text-center">
                     <h3>Anzahl Messungen pro Station</h3>
-                    <img src="stations.png" alt="Stations" width=100%>
+                    <img src="img/stations.png" alt="Stations" class="img-responsive" />
                     </div>
                     <br>
                     <p>Nicht über alle Jahre wurden alle Schadstoffe an allen Standorten gemessen. Daher fehlen einige Werte in der Visualisierung. Fehlende Werte wurden nicht eingezeichnet mit einer Verbindungslinie in der Visualisierung. Anhand der folgenden Grafik wird ersichtlich, wie viele Messungen pro Schadstoffe erfolgten. Stickstoffdioxid und Ozon wurden deutlich am häufigsten gemessen. Aus diesem Grunde erscheinen auf diesen beiden Achsen in der Visualisierung die die meisten Verbindungslinien. Von Feinstaub PM1 und den flüchtigen Kohlenwasserstoffen ohne Methan erfolgte hingegen selten eine Messung.</p>
                     <br>
                     <div class="col-lg-12 text-center">
                     <h3>Anzahl Messungen pro Schadstoff</h3>
-                    <img src="pollutants.png" alt="Pollutants" width=100%>
+                    <img src="img/pollutants.png" alt="Pollutants" class="img-responsive" />
                     </div>
                     <br>
                     <p>In einem weiteren Schritt wird zum Verständnis zu allen Schadstoffen eine kurze Zusammenfassung geliefert, bevor eine Analyse der visualisierten Daten vorgenommen wird.</p>
@@ -333,12 +328,116 @@
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a,</p>
+                    <br>
+                    <p>Laut BAFU (Bundesamt für Umwelt) hat sich die Luftqualität in der Schweiz seit 1984 stetig gebessert. Drei Luftschadstoffe liegen aber immer noch über den gesetzlichen Immissionsgrenzwerten. Dazu gehören Ozon (O3), Stickoxide (NOx) und Feinstaub (PM10) <a href="https://www.bafu.admin.ch/bafu/de/home/themen/luft/fachinformationen/luftqualitaet-in-der-schweiz.html">(BAFU).</a> </p>
+                    <p> Im Folgenden wird auf diese Aussage eingegangen und anhand der interaktiven Visualisierung eine Analyse über die Luftqualitätsdaten vorgenommen. Zuerst wird auf den Luftschadstoff Ozon eingegangen und anschliessend wird ein Stadt - Land Vergleich vorgenommen. Mittels der Filterfunktion soll überprüft werden, ob ein Unterschied der Messresultate der verschiedenen Luftschadstoffen zwischen Stadt und Land besteht. Zuletzt sollen mögliche Differenzen zwischen den Jahren entdeckt werden. </p>
                 </div>
+                <div class="col-lg-12">
+                <h3>Ozon (O3)</h3>
+                    <p> In diesem Abschnitt wird auf den Luftschadstoff «Ozon» näher eingegangen. «Ozon (O3) ist ein Gas, das natürlicherweise in kleinsten Mengen in unserer Atemluft vorkommt. In der bodennahen Troposphäre wird Ozon unter Einwirkung des Sonnenlichts und den sogenannten Vorläufersubstanzen, nämlich den flüchtigen organischen Verbindungen (VOC, auch Kohlenwasserstoffe genannt) und dem Stickstoffdioxid (NO2) gebildet. Je mehr VOC und NO2 in der Luft sind und je stärker die Sonne scheint, umso mehr Ozon wird gebildet»  <a href="https://www.bafu.admin.ch/dam/bafu/de/dokumente/luft/fachinfo-daten/fragen_und_antwortenzusommersmogundozon.pdf.download.pdf/fragen_und_antwortenzusommersmogundozon.pdf">(BAFU, 2016, S. 2). </a></p>
+                    <p> Betrachtet man in der Visualisierung den Luftschadstoff «Ozon», wird ersichtlich, dass grosse Unterschiede bestehen. Die Werte erhöhen sich von 7.9 µg/m3 bis 96 µg/m3. Der tiefste Jahresmittelwert wurde bei der Bern-Bollwerkpasserelle 1991 gemessen. Dieser Standort ist städtisch und von Verkehr umgeben. Der höchste Wert wurde in der Wengeralp im Kanton Bern, in einer ländlichen Gegend, weder von Verkehr noch Industrie umgeben, im Jahre 1999 gemessen. Filtert man den Ozon nach hohen, beziehungsweise tiefen Werten, wird ersichtlich, dass städtische Gebiete kleinere Ozon Werte aufweisen wie Ländliche. <br>
+                    Dass städtische Gebiete tiefere Ozon Werte, wie ländliche Gebiete haben, scheint etwas paradox, da Ozon, wie in der Tabelle der Luftschadstoffe beschrieben, aus dem motorisierten Strassenverkehr und industriellen Prozessen stammt. Das ist jedoch tatsächlich der Fall. Das BAFU begründet dies mit dem Slogan:
+                    </p>
+                    <br>
+                    <p><strong>«Die Stadt macht’s, das Land hat’s.»</strong></p>
+                    <br>
+                    <p> Tagsüber steigt während einer mehrtägigen Smogperiode die Ozonbelastung stark an. In den Städten werden jedoch häufig tiefere Ozonwerte, wie auf dem Land gemessen. Grund dafür ist, dass das Stickstoffmonoxid (NO) im Bereich der Emissionsquelle, das Ozon abbaut und daraus Stickstoffdioxid (NO2) bildet. NO2 wird anschliessend vom Wind weggetrieben und ist die Vorläufersubstanz für die Ozonbildung ausserhalb städtischen Zentren. Das in den Städten tagsüber produzierte Ozon wird über Nacht fast vollständig abgebaut. Auf dem Land hingegen bleibt das Ozon weithin erhalten, da weniger andere Schadstoffe vorhanden sind, welche den Smog umwandeln. <a href="https://www.bafu.admin.ch/dam/bafu/de/dokumente/luft/fachinfo-daten/fragen_und_antwortenzusommersmogundozon.pdf.download.pdf/fragen_und_antwortenzusommersmogundozon.pdf">(BAFU, 2016). </a></p>
+                    
+              
+                <div class="col-lg-4 text-center">
+                    <h3>Ozon gesamt</h3>
+                    <img src="img/ozon_alles.png" alt="Ozon_alles" class="img-responsive" />
+                </div>
+                
+                <div class="col-lg-4 text-center">
+                    <h3>Ozon in der Stadt</h3>
+                    <img src="img/ozon_stadt.png" alt="Ozon_Stadt" class="img-responsive" />
+                </div>
+                
+                <div class="col-lg-4 text-center">
+                    <h3>Ozon auf dem Land</h3>
+                    <img src="img/ozon_land.png" alt="Ozon_Land" class="img-responsive" />
+                </div>
+                </div>
+                <div class="col-lg-12">
+                    <br>
+                <h3> Stadt-Land Vergleich</h3>
+                    <p> Ländliche Gebiete haben, wie bereits erklärt, höhere Ozon Werte als städtisch Gebiete. Das ist aber auch schon alles. Aufgrund anderer Luftschadstoffe ist die Atemluft in der Stadt insgesamt schlechter, wie auf dem Land. Städtische Gebiete sind unter anderem von höheren Stickoxidwerten (NOx) und einer höheren Menge an Feinstaub (PM10, PM1 und PM2) betroffen. Aber auch andere Luftschadstoffe sind mitverantwortlich für eine ersichtlich schlechtere Luftqualität als auf dem Land. Dazu gehören unter anderem: </p>
+                    
+                    <ul class="listsize">
+                        <li> Stickstoffdioxid </li>
+                        <li> Schwefeldioxid </li>
+                        <li> Schwebestaub </li>
+                        <li> Zink im Staubniederschlag </li>
+                        <li> Benzol </li>
+                        <li> Kohlenmonoxid </li>            
+                    
+                    </ul>
+                        
+                     <p>Damit kann begründet werden, dass die Luftqualität, abgesehen vom Ozon auf dem Land besser ist, als in der Stadt. </p>
+                    
+                <div class="col-lg-12 text-center">
+                    <h3>städtische Stationen</h3>
+                    <img src="img/stadt_1140.png" alt="stadt" class="img-responsive" />
+                </div>
+                <div class="col-lg-12 text-center">
+                    <h3>ländliche Stationen</h3>
+                    <img src="img/land_1140.png" alt="land" class="img-responsive" />
+                </div>
+                    
+                <div class="col-lg-12">
+                    <br>
+                    <h3> Luftqualität über die Jahre </h3>   
+                    <p> In einem letzten Punkt, wird die Aussage, dass sich die Luftqualität seit 1984 stetig verbessert hat anhand der Visualisierung überprüft. Dabei werden in einem kurzen Film der die Luftqualitätsdaten von 1984 bis 2015 darstellt und wie sie sich über die Jahre verändert haben. Es wird empfohlen sich besonders auf die Stickstoffdioxide, Schwefeldioxide und Stickoxide zu achten, da man bei diesen Schadstoffen von Auge einen grossen Unterschied bemerkt. Diese zeitliche Abfolge kann auch eigenständig in der Visualisierung ausgeführt werden, indem man die Jahre auf 1984 filtert und diese Filterfunktion langsam nach oben gegen das Jahr 2015 zieht. </p>
+                    
+                    <video width=100% controls>
+                    <source src="countdown_1140.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                    </video>
+                    <p>Betrachtet man bei dieser zeitlichen Abfolge die Luftschadstoffe einzel, fällt sofort auf, dass sich die Werte der Luftschadstoffe deutlich reduziert haben. Bei den Stickstoffdioxiden sind die Spitzenreiter drastisch zurückgegangen. 1984 wurde der höchste Wert mit 113 µg/m3 gemessen. 2015 weist das Maximum des Jahresmittelwertes 58 µg/m3 auf. Auch die Schwefeldioxide haben deutlich abgenommen. Im Jahre 2015 liegen die Mehrheit der Messungen im Bereich von 0-4 µg/m3 mit einem Ausreisser von 18 µg/m3, welcher in Bodio, TI, ein von Industrie geprägter Standort, gemessen wurde. 1985 waren die Schwefeldioxidwerte verstreut und gingen bis zu 54.6 µg/m3 hoch. Dieser Höchstwert 1985 wurde an der Zürich-Stampfenachstrasse gemessen. Der Schwebestaub insgesamt liegt seit dem Jahre 2000 unter 4 µg/m3, wobei seit 2005 dieser Schadstoff nicht mehr gemessen wurde. Auch der Feinstaub ist etwas gesunken, er wird jedoch vom BAFU immer noch als Problem angesehen, der in Zukunft noch weiter sinken sollte. Desweiteren sind auch die Wert der Luftschadstoffe Cadmium, Blei und Thalium im Staubniederschlag gesunken, sowie das Cadmium im Feinstaub, jedoch nur minimal, die Kohlenmonoxide und das Blei im Feinstaub. </p>
+                    <p>Keinen grossen Unterschied ist bei Ozon und den Stickoxiden über die Jahre festzustellen. Sie bilden zusammen mit dem Feinstaub (PM10) die «Sorgen-Luftschadstoffe der Schweiz», da sie immer noch über den gesetzlichen Imissionsgrenzwerten stehen. Auch Ammoniak (NH3) liegt deutlich über dem kritischen Grenzwert und belastet die Umwelt.</p>
+                    <p>Zusammenfassend kann somit bestätigt werden, dass sich die Luftqualität in der Schweiz seit 1984 stetig bessert. Bei vielen Luftschadstoffen ist eine deutliche Reduktion zu bemerken. Trotzdem muss die Luftqualität stets überprüft werden. Die Luftschadstoffen Feinstaub (PM10), Ozon (O3), Stickoxide (NOx), sowie auch Ammoniak (NH3), die weiterhin über den gesetzlichen Imissionsgrenzwerten stehen, belasten die Schweizer Luftqualität stark.</p>
+                    
+                    
+                    </div>
+             
+            <!-- Referneces -->       
+                <div class="col-lg-12">   
+                <h3>Quellen</h3>
+                <ol class="listsize">
+
+
+                    <li> 
+                        BAFU (2016). Sommersmog und Ozon. Retrieved May 30, 2017 from
+                            <a href="https://www.bafu.admin.ch/dam/bafu/de/dokumente/luft/fachinfo-daten/fragen_und_antwortenzusommersmogundozon.pdf.download.pdf/fragen_und_antwortenzusommersmogundozon.pdf">Bundesamt für Umwelt </a> 
+                    </li>
+                    <li> 
+                        BAFU (2017). Luftqualität in der Schweiz. Retrieved May 29, 2017 from
+                            <a href="https://www.bafu.admin.ch/bafu/de/home/themen/luft/fachinformationen/luftqualitaet-in-der-schweiz.html">Bundesamt für Umwelt</a>
+                    </li>
+                    <li> 
+                        Flaticon (2017). The largest database of free icons (...). Retrieved May 20, 2017 from
+                            <a href="http://www.flaticon.com/search?word=sun%20cloud&license=selection&order_by=1">Flaticon</a> 
+                    </li>
+                    <li> 
+                        Kai (2016). Kai's Block. Exoplanets. Retrieved April 20, 2017 from
+                            <a href="http://bl.ocks.org/syntagmatic/81569910d887d9c782fce11deac68f39">Kai's Block </a> 
+                    </li>
+                    <li> 
+                        Miller, David (2016). Start Bootstrap. Freelancer. Retrieved May 1, 2017 from
+                            <a href="https://startbootstrap.com/template-overviews/freelancer/">David Miller </a> 
+                    </li>
+                    </ol>
+                    </div>
+                        
+                    
+                </div>    
             </div>
         </div>
     </section>
 	
+
+    
     <!-- Footer -->
     <footer class="text-center" id="contact">
         <div class="footer-above">
@@ -358,7 +457,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        Copyright &copy; Your Website 2016
+                        <a rel="license" href="http://creativecommons.org/licenses/by/3.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/3.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported License</a>.
                     </div>
                 </div>
             </div>
@@ -390,7 +489,7 @@
     <!-- Theme JavaScript -->
     <script src="js/freelancer.min.js"></script>
 
-    <!-- D3 JS ***********************************************************************************************************************-->
+    <!-- D3 JS Visualization ***********************************************************************************************************************-->
 	<script src="js/d3.v3.js"></script>
 	<script src="js/render-queue.js"></script>
 	
@@ -429,6 +528,8 @@
         // set Swiss locales for numbers
         d3.format = de_CH.numberFormat;
         
+        
+        // defining Number, String and Date
 		var types = {
 		  "Number": {
 			 key: "Number",
@@ -453,6 +554,7 @@
 		  }
 		};
 
+        // add all axis
 		var dimensions = [
 		  {
 			 key: "station_canton",
@@ -646,7 +748,7 @@
 			 .style("margin-top", margin.top + "px")
 			 .style("margin-left", margin.left + "px");
 
-		// ???
+		// defining lineWidth, canvas.node
 		var ctx = canvas.node().getContext("2d");
 		ctx.globalCompositeOperation = 'darken';
 		ctx.globalAlpha = 0.15;
@@ -686,7 +788,7 @@
 				   dim.domain = d3.functor(dim.type.extent)(data.map(function(d) { return d[dim.key]; }));
 				 }
 				 if (!("scale" in dim)) {
-				   // use type's default scale for dimension
+				    // use type's default scale for dimension
 				   dim.scale = dim.type.defaultScale.copy();
 				 }
 				 dim.scale.domain(dim.domain);
