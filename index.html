@@ -12,7 +12,7 @@
     <title>Luftqualität Schweiz</title>
     
     <!-- favicon -->
-	<link rel="icon" type="image/png" href="clouded.png" />
+	<link rel="icon" type="image/png" href="img/clouded.png" />
           
     
 	<!-- D3 CSS -->
@@ -139,24 +139,24 @@
                     <br>
                     <p>Diese Visualisierung besteht aus zwei Teilen, der grafischen interaktiven Darstellung, sowie der sich anpassenden Tabelle mit genauen Informationen.</p>
                     <ol class="listsize">
-                    <li>In der grafischen Darstellung oben, in der linken Achse bei Markierung «1» werden die Messstationen zu Kantonen zusammengefasst abgebildet. Es ist jedoch nicht so, dass nur pro Kanton Werte ausfallen, sondern gehen pro Kanton mehrere Linien aus und unten in der Tabelle wird die genaue Messstation angegeben.</li>
-                    <li>In der zweiten Achse von links wird der «area type» angegeben. Die Messstationen werden einem der vier Umgebungs-Typen «Hochgebirge», «Ländlich», Städtisch oder Vorstädtisch zugeteilt.</li>
-                    <li>In der dritten Achse von Links wird der «station type» angegeben. Hier werden die Messstationen einem der drei Stations Typen «Hintergrund, Industrie oder Verkehr zugeordnet.</li>
-                    <li>Anschliessend sind die 22 Luftschadstoffe (inkl. Ihrer Einheit) genannt.</li>
-                    <li>Auf der Achse ganz rechts sind zuletzt die Jahre aufgelistet, in denen die Messungen erfolgten.</li>
+                    <li>In der grafischen Darstellung, in der linken Achse bei «Markierung 1» werden die Messstationen zu Kantonen zusammengefasst abgebildet. Es ist jedoch nicht so, dass nur pro Kanton Werte ausfallen, sondern gehen pro Kanton mehrere Linien aus und unten in der Tabelle wird die genaue Messstation angegeben.</li>
+                    <li>In der zweiten Achse von links wird der «area type» angegeben. Die Messstationen werden einem der vier Umgebungs-Typen «Hochgebirge», «Ländlich», «Städtisch» oder «Vorstädtisch» zugeteilt.</li>
+                    <li>In der dritten Achse von links wird der «station type» angegeben. Hier werden die Messstationen einem der drei Stations Typen «Hintergrund», «Industrie» oder «Verkehr» zugeordnet. Stationtypen mit Bezeichnung «Hintergrund» sind weder von Verkehr noch Industrie umgeben. Dieser Typ ist eine Mischung aus verschiedenen Quellen.</li>
+                    <li>Anschliessend sind die 22 Luftschadstoffe (inkl. ihrer Einheit) genannt.</li>
+                    <li>Auf der Achse rechts sind zuletzt die Jahre aufgelistet, in denen die Messungen erfolgten.</li>
                     </ol>
                     <img src="img/steps_1140.png" alt="Steps" class="img-responsive" />
                     <br>
                     <br>
-                    <p>In der Tabelle unter der graphischen Abbildung werden alle Informationen und Werte genau angeben. Die Tabelle wird angepasst, je nach dem wie in der interaktiven Applikation gefiltert wird. Wird beispielsweise nur der Kanton Zürich, im Jahre 2010 angewählt, so werden nur diese Informationen in der Tabelle angezeigt. In einem kurzen Tutorial wird erläutert, wie gefiltert werden kann. Viel Spass dabei!</p>
+                    <p>In der Tabelle unter der graphischen Abbildung werden alle Informationen und Werte genau angeben. Die Tabelle wird angepasst, je nach dem wie in der interaktiven Applikation gefiltert wird. Wird beispielsweise nur der Kanton Zürich, im Jahre 2010 angewählt, so werden nur diese Informationen in der Tabelle angezeigt. Anschliessend wird in einem kurzen Tutorial erläutert, wie gefiltert werden kann. Viel Spass dabei!</p>
                     <br>
                     
                     <!-- Tutorial and explanation how to use the application -->            
                     
                     <h3>Tutorial zur Funktionsweise der Applikation</h3>
-                    <p>Um sich einen Überblick über die Daten zu verschaffen, gibt es mehrere Funktionen, wie gefiltert, geschoben und herumgespielt werden kann. Die kurze Aufzeichnung soll mögliche Beispiele veranschaulichen.</p>
+                    <p>Um sich einen Überblick über die Daten zu verschaffen, gibt es mehrere Funktionen, wie gefiltert, geschoben und herumgespielt werden kann. Diese kurze Aufzeichnung soll mögliche Beispiele veranschaulichen.</p>
                     <video width=100% controls>
-                    <source src="video.mp4" type="video/mp4">
+                    <source src="video/video.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                     </video>
                     <br>
@@ -167,7 +167,7 @@
                     <li>Du kannst den angewählten Bereich nach oben oder nach unten verschieben, indem du den markierten Bereich packst.</li>
                     <li>Auch kannst du den angewählten Bereich verkleinern oder vergrössern, wenn du oben am angewählten Bereich mit dem Pfeil-Cursor nach oben oder unten fährst.</li>
                     <li>Um die Filterfunktion wieder aufzuheben, musst du ober- oder unterhalb der gefilterten Stelle mit dem schwarzen Kreuz-Cursor ins Leere klicken.</li>
-                    <li>Du kannst auf jeder Achse einen Filter gleichzeitig setzen. Um mehrere Filter aufzuheben, musst du bei den Filtermodus bei den gewünschten Achsen mit dem gleichen Prinzip einzel aufheben.</li>
+                    <li>Du kannst auf jeder Achse einen Filter gleichzeitig setzen. Um mehrere gesetzte Filter wieder aufzuheben, musst du den Filtermodus bei den gewünschten Achsen nach dem selben Prinzip einzel aufheben.</li>
                     </ul>
                 </div>
             </div>
@@ -180,12 +180,42 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2>Vorgehen</h2>
+                    <br>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-3 text-center">
                     <br>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a,</p>
+                    <img src="img/analysis.png" alt="Analysis" class="img-responsive" />
+                    <h3>1. Inspizieren der Rohdaten</h3>
+                    <p>Die Rohdaten konnten unter der Plattform <a href="https://opendata.swiss/de/dataset/luftqualitat-schweiz-jahreswerte/resource/b9d46c73-fec0-4dfe-8cd1-07a70a64b2a4">opendata.swiss </a> als Excel File heruntergeladen werden. Anschliessend zeichnete ich mögliche Visualisierungsformen auf und mittels einer Internetrecherche habe ich nach passenden Code-Snippets gesucht.</p>
+                   
+                   <p>Die originalen Rohdaten findest du hier:</p>
+                    <a href="https://www.ubst.bafu.admin.ch/opendata/UBD0028.ods" button type="submit" class="btn btn-success btn-lg">
+                        <i class="fa fa-download"></i> Rohdaten herunterladen
+                    </a>
+                </div>
+                <div class="col-lg-3 text-center">
+                    <br>
+                    <img src="img/excel.png" alt="Excel" class="img-responsive" />
+                    <h3>2. Rohdaten bearbeiten</h3>
+                    <p>Für die anschliessende Visualisierung erschienen viele Spalten und Reihen als Überflüssig, da sie nicht in dieser Visualisierung präsentiert werden. Diese Daten wurden herausgefiltert beziehungsweise gelöscht und die 22 Luftschadstoffe wurden in Excel von einer vertikalen Auflistung zu einer horizontalen Auflistung umformatiert, damit sie so visualisiert werden konnten.</p>
+                </div>
+                <div class="col-lg-3 text-center">
+                    <br>
+                    <img src="img/visualization.png" alt="Visualization" class="img-responsive" />
+                    <h3>3. Daten visualisieren</h3>
+                    <p>Das verwendete Code-Snippet von Kai’s Block war auf komplett andere und weniger Daten ausgelegt. Daher musste das Code-Snippet zuerst auf die umformatierten Luftqualitätsdaten angepasst werden. Damit setzte auch der Prozess des Debuggings ein.</p>
+                    <p>Das originale Code-Snippet findest du hier:</p>
+                    <a href="http://bl.ocks.org/syntagmatic/81569910d887d9c782fce11deac68f39">Code-Snippet von Kai's Block </a>
+                </div>
+                <div class="col-lg-3 text-center">
+                    <br>
+                    <img src="img/keyboard.png" alt="Keyboard" class="img-responsive" />
+                    <h3>4. Beschreibung und Analyse der Visualisierung</h3> 
+                        <p>Die Visualisierung wurde in eine Webseite basierend auf einem Bootstrap Framework intergriert, auf dem die Funktion, das Vorgehen und die Daten genau beschrieben wurden. Zuletzt wurde eine Interpretation anhand der interaktiven Visualisierung vorgenommen.</p>
+                    <p>Das originale Bootstrap Framework findest du hier:</p>
+                    <a href="https://startbootstrap.com/template-overviews/freelancer/">Freelancer Bootstrap Portfolio Theme </a>
                 </div>
             </div>
         </div>
@@ -244,7 +274,7 @@
                         <tr>
                           <td>Ammoniak</td>
                             <td>NH3</td>
-                          <td>Ammoniak ist ein stark stechend riechendes, farbloses und giftiges Gas. Es reagiert in der Atmosphäre mit anderen Gasen zu gesundheitswirksamen Partikeln (sekundär gebildeter Feinstaub) oder lagert sich in Ökosystemen ab, worauf es zu akuten Schäden in der Vegetation kommt.</td>
+                          <td>Ammoniak ist ein stark, stechend riechendes, farbloses und giftiges Gas. Es reagiert in der Atmosphäre mit anderen Gasen zu gesundheitswirksamen Partikeln (sekundär gebildeter Feinstaub) oder lagert sich in Ökosystemen ab, worauf es zu akuten Schäden in der Vegetation kommt.</td>
                           
                         </tr>
                         <tr>
@@ -288,7 +318,7 @@
                         <tr>
                           <td>Schwefeldioxid </td>
                           <td>SO2</td>
-                          <td>Das ist ein farbloses, stechend riechendes Gas, das Mensch und Umwelt beeinträchtigt. Schwefeldioxid kann eine Erkrankung der Atemwege verursachen und eine Reizung von Augen, Atmungsorgangen und Haut hervorrufen. Es stammt aus Industrie- und Hausfeuerungen, sowie Vulkanausbrüchen.</td>
+                          <td>Das ist ein farbloses, stechend riechendes Gas, das Mensch und Umwelt beeinträchtigt. Schwefeldioxid kann eine Erkrankung der Atemwege verursachen und eine Reizung von Augen, Atmungsorgangen und der Haut hervorrufen. Es stammt aus Industrie- und Hausfeuerungen, sowie Vulkanausbrüchen.</td>
                         </tr>
                         <tr>
                           <td>Staubniederschlag </td>
@@ -303,7 +333,7 @@
                         <tr>
                           <td>Toluol</td>
                           <td>C7H8</td>
-                          <td>Toluol ist eine farblose, charakteristisch riechende flüchtige Flüssigkeit. Sie stammt aus dem motorisierten Strassenverkehr, Verdunstung von Treib- und Brennstoffen, sowie aus der Industrie. Toluol wirkt gesundheitsschädlich.</td>
+                          <td>Toluol ist eine farblose, charakteristisch riechende, flüchtige Flüssigkeit. Sie stammt aus dem motorisierten Strassenverkehr, Verdunstung von Treib- und Brennstoffen, sowie aus der Industrie. Toluol wirkt gesundheitsschädlich.</td>
                         </tr>
                         <tr>
                           <td>Zink im Staubniederschlag </td>
@@ -318,7 +348,7 @@
         </div>
     </section>
     	
-    <!-- Approach Section -->
+    <!-- Interpretation Section -->
     <section id="interpretation">
         <div class="container">
             <div class="row">
@@ -330,7 +360,7 @@
                 <div class="col-lg-12">
                     <br>
                     <p>Laut BAFU (Bundesamt für Umwelt) hat sich die Luftqualität in der Schweiz seit 1984 stetig gebessert. Drei Luftschadstoffe liegen aber immer noch über den gesetzlichen Immissionsgrenzwerten. Dazu gehören Ozon (O3), Stickoxide (NOx) und Feinstaub (PM10) <a href="https://www.bafu.admin.ch/bafu/de/home/themen/luft/fachinformationen/luftqualitaet-in-der-schweiz.html">(BAFU).</a> </p>
-                    <p> Im Folgenden wird auf diese Aussage eingegangen und anhand der interaktiven Visualisierung eine Analyse über die Luftqualitätsdaten vorgenommen. Zuerst wird auf den Luftschadstoff Ozon eingegangen und anschliessend wird ein Stadt - Land Vergleich vorgenommen. Mittels der Filterfunktion soll überprüft werden, ob ein Unterschied der Messresultate der verschiedenen Luftschadstoffen zwischen Stadt und Land besteht. Zuletzt sollen mögliche Differenzen zwischen den Jahren entdeckt werden. </p>
+                    <p> Im Folgenden wird auf diese Aussage eingegangen und anhand der interaktiven Visualisierung eine Analyse über die Luftqualitätsdaten vorgenommen. Zuerst wird auf den Luftschadstoff Ozon eingegangen und anschliessend wird ein Stadt - Land Vergleich aufgestellt. Mittels der Filterfunktion soll überprüft werden, ob ein Unterschied der Messresultate der verschiedenen Luftschadstoffen zwischen Stadt und Land besteht. Zuletzt sollen mögliche Differenzen zwischen den Jahren entdeckt werden. </p>
                 </div>
                 <div class="col-lg-12">
                 <h3>Ozon (O3)</h3>
@@ -373,13 +403,14 @@
                         <li> Kohlenmonoxid </li>            
                     
                     </ul>
-                        
-                     <p>Damit kann begründet werden, dass die Luftqualität, abgesehen vom Ozon auf dem Land besser ist, als in der Stadt. </p>
+                    <p>Schwefeldioxid beispielsweise zeichnet in städtischen Gebieten einige sehr hohe Werte auf. Die Spitzenreiter stammen aus diversen Städten, in denen die Messstationen von Verkehr und anderen Umgebungstypen, bzw. dem Hintergrund umgeben sind. Filtert man jedoch nach diesen Spitzenreitern, wird ersichtlich, dass diese Messungen vor langer Zeit erfolgten. Sie wurden in den Jahren 1985 bis 1990 aufgezeichnet. Aus diesem Grunde ist es für eine Interpretation relevant die Differenzen zwischen den Jahren zu betrachten. Dies wird in einem weiteren Schritt vorgenommen.</p>
+                     <p>Generell kann aber bestätigt werden, dass die Luftqualität, abgesehen vom Ozon auf dem Land besser ist, als in der Stadt. </p>
                     
                 <div class="col-lg-12 text-center">
                     <h3>städtische Stationen</h3>
                     <img src="img/stadt_1140.png" alt="stadt" class="img-responsive" />
                 </div>
+                    <br>
                 <div class="col-lg-12 text-center">
                     <h3>ländliche Stationen</h3>
                     <img src="img/land_1140.png" alt="land" class="img-responsive" />
@@ -388,15 +419,17 @@
                 <div class="col-lg-12">
                     <br>
                     <h3> Luftqualität über die Jahre </h3>   
-                    <p> In einem letzten Punkt, wird die Aussage, dass sich die Luftqualität seit 1984 stetig verbessert hat anhand der Visualisierung überprüft. Dabei werden in einem kurzen Film der die Luftqualitätsdaten von 1984 bis 2015 darstellt und wie sie sich über die Jahre verändert haben. Es wird empfohlen sich besonders auf die Stickstoffdioxide, Schwefeldioxide und Stickoxide zu achten, da man bei diesen Schadstoffen von Auge einen grossen Unterschied bemerkt. Diese zeitliche Abfolge kann auch eigenständig in der Visualisierung ausgeführt werden, indem man die Jahre auf 1984 filtert und diese Filterfunktion langsam nach oben gegen das Jahr 2015 zieht. </p>
+                    <p> In einem letzten Punkt, wird die Aussage, dass sich die Luftqualität seit 1984 stetig verbessert hat anhand der Visualisierung überprüft. Dabei wird in einem kurzen Film die Veränderung der Luftqualitätsdaten von 1984 bis 2015 dargestellt. Es wird empfohlen sich besonders auf die Stickstoffdioxide, Schwefeldioxide und Stickoxide zu achten, da man bei diesen Schadstoffen von Auge einen grossen Unterschied bemerkt. Diese zeitliche Abfolge kann auch eigenständig in der Visualisierung ausgeführt werden, indem man die Jahre auf 1984 filtert und diese Filterfunktion langsam nach oben gegen das Jahr 2015 zieht. </p>
                     
                     <video width=100% controls>
-                    <source src="countdown_1140.mp4" type="video/mp4">
+                    <source src="video/countdown_1140.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                     </video>
-                    <p>Betrachtet man bei dieser zeitlichen Abfolge die Luftschadstoffe einzel, fällt sofort auf, dass sich die Werte der Luftschadstoffe deutlich reduziert haben. Bei den Stickstoffdioxiden sind die Spitzenreiter drastisch zurückgegangen. 1984 wurde der höchste Wert mit 113 µg/m3 gemessen. 2015 weist das Maximum des Jahresmittelwertes 58 µg/m3 auf. Auch die Schwefeldioxide haben deutlich abgenommen. Im Jahre 2015 liegen die Mehrheit der Messungen im Bereich von 0-4 µg/m3 mit einem Ausreisser von 18 µg/m3, welcher in Bodio, TI, ein von Industrie geprägter Standort, gemessen wurde. 1985 waren die Schwefeldioxidwerte verstreut und gingen bis zu 54.6 µg/m3 hoch. Dieser Höchstwert 1985 wurde an der Zürich-Stampfenachstrasse gemessen. Der Schwebestaub insgesamt liegt seit dem Jahre 2000 unter 4 µg/m3, wobei seit 2005 dieser Schadstoff nicht mehr gemessen wurde. Auch der Feinstaub ist etwas gesunken, er wird jedoch vom BAFU immer noch als Problem angesehen, der in Zukunft noch weiter sinken sollte. Desweiteren sind auch die Wert der Luftschadstoffe Cadmium, Blei und Thalium im Staubniederschlag gesunken, sowie das Cadmium im Feinstaub, jedoch nur minimal, die Kohlenmonoxide und das Blei im Feinstaub. </p>
+                    <br>
+                    <br>
+                    <p>Betrachtet man bei dieser zeitlichen Abfolge die Luftschadstoffe einzel, fällt sofort auf, dass sich die Werte der Luftschadstoffe deutlich reduziert haben. Bei den Stickstoffdioxiden sind die Spitzenreiter drastisch zurückgegangen. 1984 wurde der höchste Wert mit 113 µg/m3 gemessen. 2015 weist das Maximum des Jahresmittelwertes 58 µg/m3 auf. Auch die Schwefeldioxide haben deutlich abgenommen. Im Jahre 2015 liegen die Mehrheit der Messungen im Bereich von 0-4 µg/m3 mit einem Ausreisser von 18 µg/m3, welcher in Bodio, TI, ein von Industrie geprägter Standort, gemessen wurde. 1985 waren die Schwefeldioxidwerte verstreut und gingen bis zu 54.6 µg/m3 hoch. Dieser Höchstwert 1985 wurde an der Zürich-Stampfenachstrasse gemessen. Der Schwebestaub insgesamt liegt seit dem Jahre 2000 unter 4 µg/m3, wobei seit 2005 dieser Schadstoff nicht mehr gemessen wurde. Auch der Feinstaub ist etwas gesunken, er wird jedoch vom BAFU immer noch als Problem angesehen, der in Zukunft noch weiter sinken sollte. Desweiteren sind auch die Werte der Luftschadstoffe Cadmium, Blei und Thalium im Staubniederschlag gesunken, sowie die Kohlenmonoxide und das Blei im Feinstaub und minimal das Cadmium im Feinstaub. </p>
                     <p>Keinen grossen Unterschied ist bei Ozon und den Stickoxiden über die Jahre festzustellen. Sie bilden zusammen mit dem Feinstaub (PM10) die «Sorgen-Luftschadstoffe der Schweiz», da sie immer noch über den gesetzlichen Imissionsgrenzwerten stehen. Auch Ammoniak (NH3) liegt deutlich über dem kritischen Grenzwert und belastet die Umwelt.</p>
-                    <p>Zusammenfassend kann somit bestätigt werden, dass sich die Luftqualität in der Schweiz seit 1984 stetig bessert. Bei vielen Luftschadstoffen ist eine deutliche Reduktion zu bemerken. Trotzdem muss die Luftqualität stets überprüft werden. Die Luftschadstoffen Feinstaub (PM10), Ozon (O3), Stickoxide (NOx), sowie auch Ammoniak (NH3), die weiterhin über den gesetzlichen Imissionsgrenzwerten stehen, belasten die Schweizer Luftqualität stark.</p>
+                    <p>Zusammenfassend kann somit bestätigt werden, dass sich die Luftqualität in der Schweiz seit 1984 stetig gebessert hat. Bei vielen Luftschadstoffen ist eine deutliche Reduktion zu bemerken. Trotzdem muss die Luftqualität stets überprüft werden. Die Luftschadstoffen Feinstaub (PM10), Ozon (O3), Stickoxide (NOx), sowie auch Ammoniak (NH3), die weiterhin über den gesetzlichen Imissionsgrenzwerten stehen, belasten die Schweizer Luftqualität stark.</p>
                     
                     
                     </div>
