@@ -1,741 +1,878 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-
+<html lang="de">
+  <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Luftqualität Schweiz</title>
-    
+    <meta name="description" content="Auf dieser Webseite werden für ein Projekt der Universität Bern mittels einer interaktiven Visualisierung die Luftqualitätsdaten der Schweiz präsentiert. Vom Bundesamt für Umwelt (BAFU) wurden von 1984 bis 2015 diverse Luftschadstoffe an verschiedenen Standorten in der Schweiz gemessen. Die Schritte, wie zu dieser Visualisierung gefunden wurde, sind genau dokumentiert, sowie wurde eine Interpretation zu den entsprechenden Daten vorgenommen.">
+    <meta name="author" content="Stefanie Meili">
+    <title>Luftqualität Schweiz
+    </title>
     <!-- favicon -->
-	<link rel="icon" type="image/png" href="img/clouded.png" />
-          
-    
-	<!-- D3 CSS -->
-	<link href="css/style.css" rel="stylesheet" type="text/css">
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:700" rel="stylesheet">
-		
+    <link rel="icon" type="image/png" href="img/clouded.png" />
+    <!-- D3 CSS -->
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:700" rel="stylesheet">
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
-
     <!-- Theme CSS -->
     <link href="css/freelancer.css" rel="stylesheet">
-
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-</head>
-
-<body id="page-top" class="index">
-<div id="skipnav"><a href="#maincontent">Skip to main content</a></div>
-
+  </head>
+  <body id="page-top" class="index">
+    <div id="skipnav">
+      <a href="#maincontent">Skip to main content
+      </a>
+    </div>
     <!-- Navigation -->
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
-                </button>
-                <a class="navbar-brand" href="#page-top">Luftqualität Schweiz</a>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#visualization">Visualisierung</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#about">Funktion</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#story">Vorgehen</a>
-                    </li>
-					<li class="page-scroll">
-                        <a href="#approach">Daten</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#interpretation">Interpretation</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#contact">Kontakt</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation
+            </span> Menu 
+            <i class="fa fa-bars">
+            </i>
+          </button>
+          <a class="navbar-brand" href="#page-top">Luftqualität Schweiz
+          </a>
         </div>
-        <!-- /.container-fluid -->
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="hidden">
+              <a href="#page-top">
+              </a>
+            </li>
+            <li class="page-scroll">
+              <a href="#visualization">Visualisierung
+              </a>
+            </li>
+            <li class="page-scroll">
+              <a href="#about">Funktion
+              </a>
+            </li>
+            <li class="page-scroll">
+              <a href="#story">Vorgehen
+              </a>
+            </li>
+            <li class="page-scroll">
+              <a href="#approach">Daten
+              </a>
+            </li>
+            <li class="page-scroll">
+              <a href="#interpretation">Interpretation
+              </a>
+            </li>
+            <li class="page-scroll">
+              <a href="#contact">Kontakt
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container-fluid -->
     </nav>
-
     <!-- Header -->
     <header>
-        <div class="container" id="maincontent" tabindex="-1">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="intro-text">
-                        <h1 class="name">Open Data Visualisierung</h1>
-                        <hr class="star-light">
-                        <span class="skills">Eine Visualisierung der Luftschadstoffe in der Schweiz von 1984 bis 2015</span>
-                        <br>
-                        <br>
-                        <p>Willkommen auf meiner Plattform zur Visualisierung der Luftqualitätsdaten in der Schweiz. Für ein Projekt der Universität Bern habe ich mittels einer interaktiven Visualisierung die Luftqualitätsdaten der Schweiz abgebildet. Vom Bundesamt für Umwelt (BAFU) wurden von 1984 bis 2015 diverse Luftschadstoffe an verschiedenen Standorten in der Schweiz gemessen. Die Funktionsweise und Schritte, wie zu dieser Visualisierung gefunden wurde, sind genau dokumentiert, sowie wurde eine Interpretation zu den entsprechenden Daten vorgenommen.</p>
-                    </div>
-                </div>
+      <div class="container" id="maincontent" tabindex="-1">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="intro-text">
+              <h1 class="name">Open Data Visualisierung
+              </h1>
+              <hr class="star-light">
+              <span class="skills">Eine Visualisierung der Luftschadstoffe in der Schweiz von 1984 bis 2015
+              </span>
+              <br>
+              <br>
+              <p>Willkommen auf meiner Plattform zur Visualisierung der Luftqualitätsdaten in der Schweiz. Für ein Projekt der Universität Bern habe ich mittels einer interaktiven Visualisierung die Luftqualitätsdaten der Schweiz abgebildet. Vom Bundesamt für Umwelt (BAFU) wurden von 1984 bis 2015 diverse Luftschadstoffe an verschiedenen Standorten in der Schweiz gemessen. Die Funktionsweise und Schritte, wie zu dieser Visualisierung gefunden wurde, sind genau dokumentiert, sowie wurde eine Interpretation zu den entsprechenden Daten vorgenommen.
+              </p>
             </div>
+          </div>
         </div>
+      </div>
     </header>
-
     <!-- Visualization Grid Section -->
     <section id="visualization">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>Luftqualität Schweiz</h2>
-                </div>
-				<div class="col-lg-8 col-lg-offset-2 text-center">
-                    <p>von 1984 bis 2015</p>
-                </div>
-                <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <p>dargestellt werden die Jahresmittelwerte</p>
-                </div>
-
-            </div>
-			<div class="row">
-				<div class="col-lg-12" id="figurediv"></div>
-			</div>
-			<div class="row">
-				<div class="col-lg-12" id="tablediv"></div>
-			</div>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2>Luftqualität Schweiz
+            </h2>
+          </div>
+          <div class="col-lg-8 col-lg-offset-2 text-center">
+            <p>von 1984 bis 2015
+            </p>
+          </div>
+          <div class="col-lg-8 col-lg-offset-2 text-center">
+            <p>dargestellt werden die Jahresmittelwerte
+            </p>
+          </div>
         </div>
+        <div class="row">
+          <div class="col-lg-12" id="figurediv">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12" id="tablediv">
+          </div>
+        </div>
+      </div>
     </section>
-	
     <!-- About/Funktions Section -->
     <section class="success" id="about">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>Funktion</h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <br>
-                    <p>Diese Visualisierung besteht aus zwei Teilen, der grafischen interaktiven Darstellung, sowie der sich anpassenden Tabelle mit genauen Informationen.</p>
-                    <ol class="listsize">
-                    <li>In der grafischen Darstellung, in der linken Achse bei «Markierung 1» werden die Messstationen zu Kantonen zusammengefasst abgebildet. Es ist jedoch nicht so, dass nur pro Kanton Werte ausfallen, sondern gehen pro Kanton mehrere Linien aus und unten in der Tabelle wird die genaue Messstation angegeben.</li>
-                    <li>In der zweiten Achse von links wird der «area type» angegeben. Die Messstationen werden einem der vier Umgebungs-Typen «Hochgebirge», «Ländlich», «Städtisch» oder «Vorstädtisch» zugeteilt.</li>
-                    <li>In der dritten Achse von links wird der «station type» angegeben. Hier werden die Messstationen einem der drei Stations Typen «Hintergrund», «Industrie» oder «Verkehr» zugeordnet. Stationtypen mit Bezeichnung «Hintergrund» sind weder von Verkehr noch Industrie umgeben. Dieser Typ ist eine Mischung aus verschiedenen Quellen.</li>
-                    <li>Anschliessend sind die 22 Luftschadstoffe (inkl. ihrer Einheit) genannt.</li>
-                    <li>Auf der Achse rechts sind zuletzt die Jahre aufgelistet, in denen die Messungen erfolgten.</li>
-                    </ol>
-                    <img src="img/steps_1140.png" alt="Steps" class="img-responsive" />
-                    <br>
-                    <br>
-                    <p>In der Tabelle unter der graphischen Abbildung werden alle Informationen und Werte genau angeben. Die Tabelle wird angepasst, je nach dem wie in der interaktiven Applikation gefiltert wird. Wird beispielsweise nur der Kanton Zürich, im Jahre 2010 angewählt, so werden nur diese Informationen in der Tabelle angezeigt. Anschliessend wird in einem kurzen Tutorial erläutert, wie gefiltert werden kann. Viel Spass dabei!</p>
-                    <br>
-                    
-                    <!-- Tutorial and explanation how to use the application -->            
-                    
-                    <h3>Tutorial zur Funktionsweise der Applikation</h3>
-                    <p>Um sich einen Überblick über die Daten zu verschaffen, gibt es mehrere Funktionen, wie gefiltert, geschoben und herumgespielt werden kann. Diese kurze Aufzeichnung soll mögliche Beispiele veranschaulichen.</p>
-                    <video width=100% controls>
-                    <source src="video/video.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                    </video>
-                    <br>
-                    <br>
-                    <ul class="listsize">
-                    <li>Fährst du über eine Achse, so erscheint sie dunkel und dein Cursor verwandelt sich in ein schwarzes Kreuz.</li>
-                    <li>Mit diesem schwarzen Cursor kannst du nun auf der Achse auf der du dich befindest, Daten filtern, indem du die gewünschten Werte markierst.</li>
-                    <li>Du kannst den angewählten Bereich nach oben oder nach unten verschieben, indem du den markierten Bereich packst.</li>
-                    <li>Auch kannst du den angewählten Bereich verkleinern oder vergrössern, wenn du oben am angewählten Bereich mit dem Pfeil-Cursor nach oben oder unten fährst.</li>
-                    <li>Um die Filterfunktion wieder aufzuheben, musst du ober- oder unterhalb der gefilterten Stelle mit dem schwarzen Kreuz-Cursor ins Leere klicken.</li>
-                    <li>Du kannst auf jeder Achse einen Filter gleichzeitig setzen. Um mehrere gesetzte Filter wieder aufzuheben, musst du den Filtermodus bei den gewünschten Achsen nach dem selben Prinzip einzel aufheben.</li>
-                    </ul>
-                </div>
-            </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2>Funktion
+            </h2>
+          </div>
         </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <br>
+            <p>Diese Visualisierung besteht aus zwei Teilen, der grafischen interaktiven Darstellung, sowie der sich anpassenden Tabelle mit genauen Informationen.
+            </p>
+            <ol class="listsize">
+              <li>In der grafischen Darstellung, in der linken Achse bei «Markierung 1» werden die Messstationen zu Kantonen zusammengefasst abgebildet. Es ist jedoch nicht so, dass nur pro Kanton Werte ausfallen, sondern gehen pro Kanton mehrere Linien aus und unten in der Tabelle wird die genaue Messstation angegeben.
+              </li>
+              <li>In der zweiten Achse von links wird der «area type» angegeben. Die Messstationen werden einem der vier Umgebungs-Typen «Hochgebirge», «Ländlich», «Städtisch» oder «Vorstädtisch» zugeteilt.
+              </li>
+              <li>In der dritten Achse von links wird der «station type» angegeben. Hier werden die Messstationen einem der drei Stations Typen «Hintergrund», «Industrie» oder «Verkehr» zugeordnet. Stationtypen mit Bezeichnung «Hintergrund» sind weder von Verkehr noch Industrie umgeben. Dieser Typ ist eine Mischung aus verschiedenen Quellen.
+              </li>
+              <li>Anschliessend sind die 22 Luftschadstoffe (inkl. ihrer Einheit) genannt.
+              </li>
+              <li>Auf der Achse rechts sind zuletzt die Jahre aufgelistet, in denen die Messungen erfolgten.
+              </li>
+            </ol>
+            <img src="img/steps_1140.png" alt="Steps" class="img-responsive" />
+            <br>
+            <br>
+            <p>In der Tabelle unter der graphischen Abbildung werden alle Informationen und Werte genau angeben. Die Tabelle wird angepasst, je nach dem wie in der interaktiven Applikation gefiltert wird. Wird beispielsweise nur der Kanton Zürich, im Jahre 2010 angewählt, so werden nur diese Informationen in der Tabelle angezeigt. Anschliessend wird in einem kurzen Tutorial erläutert, wie gefiltert werden kann. Viel Spass dabei!
+            </p>
+            <br>
+            <!-- Tutorial and explanation how to use the application -->            
+            <h3>Tutorial zur Funktionsweise der Applikation
+            </h3>
+            <p>Um sich einen Überblick über die Daten zu verschaffen, gibt es mehrere Funktionen, wie gefiltert, geschoben und herumgespielt werden kann. Diese kurze Aufzeichnung soll mögliche Beispiele veranschaulichen.
+            </p>
+            <video width=100% controls>
+              <source src="img/video.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <br>
+            <br>
+            <ul class="listsize">
+              <li>Fährst du über eine Achse, so erscheint sie dunkel und dein Cursor verwandelt sich in ein schwarzes Kreuz.
+              </li>
+              <li>Mit diesem schwarzen Cursor kannst du nun auf der Achse auf der du dich befindest, Daten filtern, indem du die gewünschten Werte markierst.
+              </li>
+              <li>Du kannst den angewählten Bereich nach oben oder nach unten verschieben, indem du den markierten Bereich packst.
+              </li>
+              <li>Auch kannst du den angewählten Bereich verkleinern oder vergrössern, wenn du oben am angewählten Bereich mit dem Pfeil-Cursor nach oben oder unten fährst.
+              </li>
+              <li>Um die Filterfunktion wieder aufzuheben, musst du ober- oder unterhalb der gefilterten Stelle mit dem schwarzen Kreuz-Cursor ins Leere klicken.
+              </li>
+              <li>Du kannst auf jeder Achse einen Filter gleichzeitig setzen. Um mehrere gesetzte Filter wieder aufzuheben, musst du den Filtermodus bei den gewünschten Achsen nach dem selben Prinzip einzel aufheben.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </section>
-	
-        <!-- story Section -->
+    <!-- story Section -->
     <section id="story">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>Vorgehen</h2>
-                    <br>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-3 text-center">
-                    <br>
-                    <img src="img/analysis.png" alt="Analysis" class="img-responsive" />
-                    <h3>1. Inspizieren der Rohdaten</h3>
-                    <p>Die Rohdaten konnten unter der Plattform <a href="https://opendata.swiss/de/dataset/luftqualitat-schweiz-jahreswerte/resource/b9d46c73-fec0-4dfe-8cd1-07a70a64b2a4">opendata.swiss </a> als Excel File heruntergeladen werden. Anschliessend zeichnete ich mögliche Visualisierungsformen auf und mittels einer Internetrecherche habe ich nach passenden Code-Snippets gesucht.</p>
-                   
-                   <p>Die originalen Rohdaten findest du hier:</p>
-                    <a href="https://www.ubst.bafu.admin.ch/opendata/UBD0028.ods" button type="submit" class="btn btn-success btn-lg">
-                        <i class="fa fa-download"></i> Rohdaten herunterladen
-                    </a>
-                </div>
-                <div class="col-lg-3 text-center">
-                    <br>
-                    <img src="img/excel.png" alt="Excel" class="img-responsive" />
-                    <h3>2. Rohdaten bearbeiten</h3>
-                    <p>Für die anschliessende Visualisierung erschienen viele Spalten und Reihen als Überflüssig, da sie nicht in dieser Visualisierung präsentiert werden. Diese Daten wurden herausgefiltert beziehungsweise gelöscht und die 22 Luftschadstoffe wurden in Excel von einer vertikalen Auflistung zu einer horizontalen Auflistung umformatiert, damit sie so visualisiert werden konnten.</p>
-                </div>
-                <div class="col-lg-3 text-center">
-                    <br>
-                    <img src="img/visualization.png" alt="Visualization" class="img-responsive" />
-                    <h3>3. Daten visualisieren</h3>
-                    <p>Das verwendete Code-Snippet von Kai’s Block war auf komplett andere und weniger Daten ausgelegt. Daher musste das Code-Snippet zuerst auf die umformatierten Luftqualitätsdaten angepasst werden. Damit setzte auch der Prozess des Debuggings ein.</p>
-                    <p>Das originale Code-Snippet findest du hier:</p>
-                    <a href="http://bl.ocks.org/syntagmatic/81569910d887d9c782fce11deac68f39">Code-Snippet von Kai's Block </a>
-                </div>
-                <div class="col-lg-3 text-center">
-                    <br>
-                    <img src="img/keyboard.png" alt="Keyboard" class="img-responsive" />
-                    <h3>4. Beschreibung und Analyse der Visualisierung</h3> 
-                        <p>Die Visualisierung wurde in eine Webseite basierend auf einem Bootstrap Framework intergriert, auf dem die Funktion, das Vorgehen und die Daten genau beschrieben wurden. Zuletzt wurde eine Interpretation anhand der interaktiven Visualisierung vorgenommen.</p>
-                    <p>Das originale Bootstrap Framework findest du hier:</p>
-                    <a href="https://startbootstrap.com/template-overviews/freelancer/">Freelancer Bootstrap Portfolio Theme </a>
-                </div>
-            </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2>Vorgehen
+            </h2>
+            <br>
+          </div>
         </div>
+        <div class="row">
+          <div class="col-lg-3 text-center">
+            <br>
+            <img src="img/analysis.png" alt="Analysis" class="img-responsive" />
+            <h3>1. Inspizieren der Rohdaten
+            </h3>
+            <p>Die Rohdaten konnten unter der Plattform 
+              <a href="https://opendata.swiss/de/dataset/luftqualitat-schweiz-jahreswerte/resource/b9d46c73-fec0-4dfe-8cd1-07a70a64b2a4">opendata.swiss 
+              </a> als Excel File heruntergeladen werden. Anschliessend zeichnete ich mögliche Visualisierungsformen auf und mittels einer Internetrecherche habe ich nach passenden Code-Snippets gesucht.
+            </p>
+            <p>Die originalen Rohdaten findest du hier:
+            </p>
+            <a href="https://www.ubst.bafu.admin.ch/opendata/UBD0028.ods" button type="submit" class="btn btn-success btn-lg">
+              <i class="fa fa-download">
+              </i> Rohdaten herunterladen
+            </a>
+          </div>
+          <div class="col-lg-3 text-center">
+            <br>
+            <img src="img/excel.png" alt="Excel" class="img-responsive" />
+            <h3>2. Rohdaten bearbeiten
+            </h3>
+            <p>Für die anschliessende Visualisierung erschienen viele Spalten und Reihen als Überflüssig, da sie nicht in dieser Visualisierung präsentiert werden. Diese Daten wurden herausgefiltert beziehungsweise gelöscht und die 22 Luftschadstoffe wurden in Excel von einer vertikalen Auflistung zu einer horizontalen Auflistung umformatiert, damit sie so visualisiert werden konnten.
+            </p>
+          </div>
+          <div class="col-lg-3 text-center">
+            <br>
+            <img src="img/visualization.png" alt="Visualization" class="img-responsive" />
+            <h3>3. Daten visualisieren
+            </h3>
+            <p>Das verwendete Code-Snippet von Kai’s Block war auf komplett andere und weniger Daten ausgelegt. Daher musste das Code-Snippet zuerst auf die umformatierten Luftqualitätsdaten angepasst werden. Damit setzte auch der Prozess des Debuggings ein.
+            </p>
+            <p>Das originale Code-Snippet findest du hier:
+            </p>
+            <a href="http://bl.ocks.org/syntagmatic/81569910d887d9c782fce11deac68f39">Code-Snippet von Kai's Block 
+            </a>
+          </div>
+          <div class="col-lg-3 text-center">
+            <br>
+            <img src="img/keyboard.png" alt="Keyboard" class="img-responsive" />
+            <h3>4. Beschreibung und Analyse der Visualisierung
+            </h3> 
+            <p>Die Visualisierung wurde in eine Webseite basierend auf einem Bootstrap Framework intergriert, auf dem die Funktion, das Vorgehen und die Daten genau beschrieben wurden. Zuletzt wurde eine Interpretation anhand der interaktiven Visualisierung vorgenommen.
+            </p>
+            <p>Das originale Bootstrap Framework findest du hier:
+            </p>
+            <a href="https://startbootstrap.com/template-overviews/freelancer/">Freelancer Bootstrap Portfolio Theme 
+            </a>
+          </div>
+        </div>
+      </div>
     </section>
-    
-	<!-- Approach Section -->
+    <!-- Approach Section -->
     <section id="approach">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>Daten</h2>
-                    <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <br>                        
-
-            <!-- Button to download data -->
-                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <a href="https://www.ubst.bafu.admin.ch/opendata/UBD0028.ods" button type="submit" class="btn btn-success btn-lg">
-                        <i class="fa fa-download"></i> Rohdaten herunterladen
-                    </a>
-                </div>
-
-                    
-                    </div>
-                </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2>Daten
+            </h2>
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+              <br>                        
+              <!-- Button to download data -->
+              <div class="col-lg-8 col-lg-offset-2 text-center">
+                <a href="https://www.ubst.bafu.admin.ch/opendata/UBD0028.ods" button type="submit" class="btn btn-success btn-lg">
+                  <i class="fa fa-download">
+                  </i> Rohdaten herunterladen
+                </a>
+              </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <br>
-                    <p>Das Datenset, welches vom Bundesamt für Umwelt (BAFU) zur Verfügung gestellt wurde und auch öffentlich zugänglich ist, enthält 68'433 Messeinträge über die Jahre 1984 bis 2015 verteilt. An 215 Stationen in der Schweiz wurden Schadstoffe in der Luft gemessen. In dieser Visualisierung wurden die Jahresmittelwerte der Schadstoffe herausgefiltert, da nur in dieser Skala alle 22 Schadstoffe vorhanden waren. Nach der Filterung mittels Excel waren noch 16'738 gemessene Werte an 208 Standorten vorhanden. In der folgenden Grafik wird abgebildet, wie viele Messungen pro Station erfolgten. Wie man sieht, gibt es grosse Unterschiede zwischen den Anzahl Messungen pro Standort.</p>
-                    <br>
-                    <div class="col-lg-12 text-center">
-                    <h3>Anzahl Messungen pro Station</h3>
-                    <img src="img/stations.png" alt="Stations" class="img-responsive" />
-                    </div>
-                    <br>
-                    <p>Nicht über alle Jahre wurden alle Schadstoffe an allen Standorten gemessen. Daher fehlen einige Werte in der Visualisierung. Fehlende Werte wurden nicht eingezeichnet mit einer Verbindungslinie in der Visualisierung. Anhand der folgenden Grafik wird ersichtlich, wie viele Messungen pro Schadstoffe erfolgten. Stickstoffdioxid und Ozon wurden deutlich am häufigsten gemessen. Aus diesem Grunde erscheinen auf diesen beiden Achsen in der Visualisierung die die meisten Verbindungslinien. Von Feinstaub PM1 und den flüchtigen Kohlenwasserstoffen ohne Methan erfolgte hingegen selten eine Messung.</p>
-                    <br>
-                    <div class="col-lg-12 text-center">
-                    <h3>Anzahl Messungen pro Schadstoff</h3>
-                    <img src="img/pollutants.png" alt="Pollutants" class="img-responsive" />
-                    </div>
-                    <br>
-                    <p>In einem weiteren Schritt wird zum Verständnis zu allen Schadstoffen eine kurze Zusammenfassung geliefert, bevor eine Analyse der visualisierten Daten vorgenommen wird.</p>
-                    <br>
-                    
-        <!-- Table for air pollutants -->            
-                    <table class="table table-striped">
-                      <thead>
-                        <tr>
-                          <th>Luftschadstoff</th>
-                          <th>Symbol</th>
-                          <th>Beschreibung</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>Ammoniak</td>
-                            <td>NH3</td>
-                          <td>Ammoniak ist ein stark, stechend riechendes, farbloses und giftiges Gas. Es reagiert in der Atmosphäre mit anderen Gasen zu gesundheitswirksamen Partikeln (sekundär gebildeter Feinstaub) oder lagert sich in Ökosystemen ab, worauf es zu akuten Schäden in der Vegetation kommt.</td>
-                          
-                        </tr>
-                        <tr>
-
-                          <td>Benzol</td>
-                            <td>C6H6</td>
-                          <td>Benzol ist eine organische, chemische Verbindung. Sie wirkt krebserregend. Im Benzin für Kraftfahrzeuge ist Benzol enthalten. Auch stammt es aus Feuerungen, Heizungen, sowie Tabakrauch. </td>
-                    
-                        </tr>
-                        <tr>
-
-                          <td>Blei</td>
-                            <td>Pb</td>
-                          <td>Blei ist ein giftiges Schwermetall. Es stammt aus Strassen- und Flugverkehr, Abfallverbrennungen, Korrosionsschutzarbeiten und bleihaltiger Munition. Es führt zur Schädigung der Fauna und Flora, sowie zu Beeinträchtigungen der Blutbildung und Entwicklung von Kindern.</td>                       
-                        </tr>
-                        <tr>
-                          <td>Cadmium</td>
-                          <td>Cd</td>
-                          <td>Cadmium ist ein toxisches Schwermetall. Es stammt unter anderem aus Abfallverbrennungen, Stahlwerken und Industriefeuerungen. In bioverfügbarer Form ist es krebserregend, es ist giftig für Pflanzen und Mikroorganismen, sowie wirkt es toxisch für Mensch und Tier bei chronischer Belastung in geringen Mengen.</td>
-                        </tr>                         
-                        <tr>
-                          <td>Feinstaub</td>
-                          <td>PM10</td>
-                          <td>Feinstaub sind feste und flüssige Teilchen mit einem Durchmesser von weniger als 10 Mikrometer. Die Zusammensetzung besteht aus Schwermetallen, Sulfat, Nitrat, Ammonium, organischer Kohlenstoff, polyzyklische aromatische Kohlenwasserstoffe, Dioxine und Furane. Er stammt aus dem Strassen- und Schienenverkehr, Landwirtschaft, Industrie, Baustellen und Feuerungen. Feinstaub fördert Erkrankungen der Atemwege und des Herz-Kreislauf-Systems und erhöht das Krebsrisiko.</td>
-                        </tr>
-                        <tr>
-                          <td>Flüchtige Kohlenwasserstoffe ohne Methan</td>
-                          <td>NMVOC</td>
-                          <td>Das sind organische Verbindungen und sind teils natürlichen Ursprungs oder stammen aus dem motorisierten Strassenverkehr und Industrien. Sie wirken krebserregend und sind mitverantwortlich für den Treibhauseffekt.</td>
-                        </tr>
-                         <tr>
-                          <td>Kohlenmonoxid</td>
-                          <td>CO</td>
-                          <td>Kohlenmonoxid ist ein farb- und geruchloses Gas, das bei der unvollständigen Verbrennung von Brenn- und Treibstoffen entsteht. In höheren Konzentrationen wirkt es als starkes Atem Gift und beeinträchtigt die Sauerstoffaufnahme von Menschen und Tieren. Es ist mitverantwortlich für den Treibhauseffekt.</td>
-                        </tr>
-                        <tr>
-                          <td>Ozon</td>
-                          <td>O3</td>
-                          <td>Ozon ist ein farbloses und giftiges Gas. In Bodennähe wird es nicht direkt freigesetzt, sondern aus flüchtigen, organischen Verbindungen unter intensiver Sonneneinstrahlung gebildet. Es stammt aus dem motorisierten Strassenverkehr und industriellen Prozessen. Ozon reizt die Schleimhaut der Atemwege und vermindert die Leistungsfähigkeit der Lungen, sowie verursacht es eine Schädigung der Pflanzen. Ozon ist mitverantwortlich für den Treibhauseffekt.</td>
-                        </tr>
-                        <tr>
-                          <td>Schwefeldioxid </td>
-                          <td>SO2</td>
-                          <td>Das ist ein farbloses, stechend riechendes Gas, das Mensch und Umwelt beeinträchtigt. Schwefeldioxid kann eine Erkrankung der Atemwege verursachen und eine Reizung von Augen, Atmungsorgangen und der Haut hervorrufen. Es stammt aus Industrie- und Hausfeuerungen, sowie Vulkanausbrüchen.</td>
-                        </tr>
-                        <tr>
-                          <td>Staubniederschlag </td>
-                          <td>SN</td>
-                          <td>Als Staubniederschlag wird die Ablagerung von Stoffen, die als trockener Staub zusammen mit Regenwasser oder als gasförmige Bestandteile aus der Luft auf Oberflächen gelangen. Früher galt er als sichtbares Zeichen für die Luftverschmutzung.</td>
-                        </tr>
-                        <tr>
-                          <td>Stickoxide </td>
-                          <td>NOx</td>
-                          <td>Das ist ein Sammelbegriff für verschiedene gasförmige Verbindungen. Dazu zählen Stickstoffmonoxid (NO) und Stickstoffdioxid (NO2). Sie führen zu einer Vielzahl von negativen Umwelteinwirkungen. Stickstoffoxide stammen hauptsächlich aus dem motorisiertem Strassenverkehr und Feuerungen.</td>
-                        </tr>
-                        <tr>
-                          <td>Toluol</td>
-                          <td>C7H8</td>
-                          <td>Toluol ist eine farblose, charakteristisch riechende, flüchtige Flüssigkeit. Sie stammt aus dem motorisierten Strassenverkehr, Verdunstung von Treib- und Brennstoffen, sowie aus der Industrie. Toluol wirkt gesundheitsschädlich.</td>
-                        </tr>
-                        <tr>
-                          <td>Zink im Staubniederschlag </td>
-                          <td>ZN im SN</td>
-                          <td>Zink zählt zu den Schwermetallen. Es stammt aus der Abfallverbrennung, Stahlwerken, Industrie- und anderen Abwässer und dem motorisiertem Strassenverkehr. Es wirkt in hoher Konzentration toxisch und beeinträchtigt das Pflanzenwachstum.</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    
-                </div>
-            </div>
+          </div>
         </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <br>
+            <p>Das Datenset, welches vom Bundesamt für Umwelt (BAFU) zur Verfügung gestellt wurde und auch öffentlich zugänglich ist, enthält 68'433 Messeinträge über die Jahre 1984 bis 2015 verteilt. An 215 Stationen in der Schweiz wurden Schadstoffe in der Luft gemessen. In dieser Visualisierung wurden die Jahresmittelwerte der Schadstoffe herausgefiltert, da nur in dieser Skala alle 22 Schadstoffe vorhanden waren. Nach der Filterung mittels Excel waren noch 16'738 gemessene Werte an 208 Standorten vorhanden. In der folgenden Grafik wird abgebildet, wie viele Messungen pro Station erfolgten. Wie man sieht, gibt es grosse Unterschiede zwischen den Anzahl Messungen pro Standort.
+            </p>
+            <br>
+            <div class="col-lg-12 text-center">
+              <h3>Anzahl Messungen pro Station
+              </h3>
+              <img src="img/stations.png" alt="Stations" class="img-responsive" />
+            </div>
+            <br>
+            <p>Nicht über alle Jahre wurden alle Schadstoffe an allen Standorten gemessen. Daher fehlen einige Werte in der Visualisierung. Fehlende Werte wurden nicht eingezeichnet mit einer Verbindungslinie in der Visualisierung. Anhand der folgenden Grafik wird ersichtlich, wie viele Messungen pro Schadstoffe erfolgten. Stickstoffdioxid und Ozon wurden deutlich am häufigsten gemessen. Aus diesem Grunde erscheinen auf diesen beiden Achsen in der Visualisierung die die meisten Verbindungslinien. Von Feinstaub PM1 und den flüchtigen Kohlenwasserstoffen ohne Methan erfolgte hingegen selten eine Messung.
+            </p>
+            <br>
+            <div class="col-lg-12 text-center">
+              <h3>Anzahl Messungen pro Schadstoff
+              </h3>
+              <img src="img/pollutants.png" alt="Pollutants" class="img-responsive" />
+            </div>
+            <br>
+            <p>In einem weiteren Schritt wird zum Verständnis zu allen Schadstoffen eine kurze Zusammenfassung geliefert, bevor eine Analyse der visualisierten Daten vorgenommen wird.
+            </p>
+            <br>
+            <!-- Table for air pollutants -->            
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Luftschadstoff
+                  </th>
+                  <th>Symbol
+                  </th>
+                  <th>Beschreibung
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Ammoniak
+                  </td>
+                  <td>NH3
+                  </td>
+                  <td>Ammoniak ist ein stark, stechend riechendes, farbloses und giftiges Gas. Es reagiert in der Atmosphäre mit anderen Gasen zu gesundheitswirksamen Partikeln (sekundär gebildeter Feinstaub) oder lagert sich in Ökosystemen ab, worauf es zu akuten Schäden in der Vegetation kommt.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Benzol
+                  </td>
+                  <td>C6H6
+                  </td>
+                  <td>Benzol ist eine organische, chemische Verbindung. Sie wirkt krebserregend. Im Benzin für Kraftfahrzeuge ist Benzol enthalten. Auch stammt es aus Feuerungen, Heizungen, sowie Tabakrauch. 
+                  </td>
+                </tr>
+                <tr>
+                  <td>Blei
+                  </td>
+                  <td>Pb
+                  </td>
+                  <td>Blei ist ein giftiges Schwermetall. Es stammt aus Strassen- und Flugverkehr, Abfallverbrennungen, Korrosionsschutzarbeiten und bleihaltiger Munition. Es führt zur Schädigung der Fauna und Flora, sowie zu Beeinträchtigungen der Blutbildung und Entwicklung von Kindern.
+                  </td>                       
+                </tr>
+                <tr>
+                  <td>Cadmium
+                  </td>
+                  <td>Cd
+                  </td>
+                  <td>Cadmium ist ein toxisches Schwermetall. Es stammt unter anderem aus Abfallverbrennungen, Stahlwerken und Industriefeuerungen. In bioverfügbarer Form ist es krebserregend, es ist giftig für Pflanzen und Mikroorganismen, sowie wirkt es toxisch für Mensch und Tier bei chronischer Belastung in geringen Mengen.
+                  </td>
+                </tr>                         
+                <tr>
+                  <td>Feinstaub
+                  </td>
+                  <td>PM10
+                  </td>
+                  <td>Feinstaub sind feste und flüssige Teilchen mit einem Durchmesser von weniger als 10 Mikrometer. Die Zusammensetzung besteht aus Schwermetallen, Sulfat, Nitrat, Ammonium, organischer Kohlenstoff, polyzyklische aromatische Kohlenwasserstoffe, Dioxine und Furane. Er stammt aus dem Strassen- und Schienenverkehr, Landwirtschaft, Industrie, Baustellen und Feuerungen. Feinstaub fördert Erkrankungen der Atemwege und des Herz-Kreislauf-Systems und erhöht das Krebsrisiko.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Flüchtige Kohlenwasserstoffe ohne Methan
+                  </td>
+                  <td>NMVOC
+                  </td>
+                  <td>Das sind organische Verbindungen und sind teils natürlichen Ursprungs oder stammen aus dem motorisierten Strassenverkehr und Industrien. Sie wirken krebserregend und sind mitverantwortlich für den Treibhauseffekt.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Kohlenmonoxid
+                  </td>
+                  <td>CO
+                  </td>
+                  <td>Kohlenmonoxid ist ein farb- und geruchloses Gas, das bei der unvollständigen Verbrennung von Brenn- und Treibstoffen entsteht. In höheren Konzentrationen wirkt es als starkes Atem Gift und beeinträchtigt die Sauerstoffaufnahme von Menschen und Tieren. Es ist mitverantwortlich für den Treibhauseffekt.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Ozon
+                  </td>
+                  <td>O3
+                  </td>
+                  <td>Ozon ist ein farbloses und giftiges Gas. In Bodennähe wird es nicht direkt freigesetzt, sondern aus flüchtigen, organischen Verbindungen unter intensiver Sonneneinstrahlung gebildet. Es stammt aus dem motorisierten Strassenverkehr und industriellen Prozessen. Ozon reizt die Schleimhaut der Atemwege und vermindert die Leistungsfähigkeit der Lungen, sowie verursacht es eine Schädigung der Pflanzen. Ozon ist mitverantwortlich für den Treibhauseffekt.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Schwefeldioxid 
+                  </td>
+                  <td>SO2
+                  </td>
+                  <td>Das ist ein farbloses, stechend riechendes Gas, das Mensch und Umwelt beeinträchtigt. Schwefeldioxid kann eine Erkrankung der Atemwege verursachen und eine Reizung von Augen, Atmungsorgangen und der Haut hervorrufen. Es stammt aus Industrie- und Hausfeuerungen, sowie Vulkanausbrüchen.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Staubniederschlag 
+                  </td>
+                  <td>SN
+                  </td>
+                  <td>Als Staubniederschlag wird die Ablagerung von Stoffen, die als trockener Staub zusammen mit Regenwasser oder als gasförmige Bestandteile aus der Luft auf Oberflächen gelangen. Früher galt er als sichtbares Zeichen für die Luftverschmutzung.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Stickoxide 
+                  </td>
+                  <td>NOx
+                  </td>
+                  <td>Das ist ein Sammelbegriff für verschiedene gasförmige Verbindungen. Dazu zählen Stickstoffmonoxid (NO) und Stickstoffdioxid (NO2). Sie führen zu einer Vielzahl von negativen Umwelteinwirkungen. Stickstoffoxide stammen hauptsächlich aus dem motorisiertem Strassenverkehr und Feuerungen.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Toluol
+                  </td>
+                  <td>C7H8
+                  </td>
+                  <td>Toluol ist eine farblose, charakteristisch riechende, flüchtige Flüssigkeit. Sie stammt aus dem motorisierten Strassenverkehr, Verdunstung von Treib- und Brennstoffen, sowie aus der Industrie. Toluol wirkt gesundheitsschädlich.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Zink im Staubniederschlag 
+                  </td>
+                  <td>ZN im SN
+                  </td>
+                  <td>Zink zählt zu den Schwermetallen. Es stammt aus der Abfallverbrennung, Stahlwerken, Industrie- und anderen Abwässer und dem motorisiertem Strassenverkehr. Es wirkt in hoher Konzentration toxisch und beeinträchtigt das Pflanzenwachstum.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </section>
-    	
     <!-- Interpretation Section -->
     <section id="interpretation">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>Interpretation</h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <br>
-                    <p>Laut BAFU (Bundesamt für Umwelt) hat sich die Luftqualität in der Schweiz seit 1984 stetig gebessert. Drei Luftschadstoffe liegen aber immer noch über den gesetzlichen Immissionsgrenzwerten. Dazu gehören Ozon (O3), Stickoxide (NOx) und Feinstaub (PM10) <a href="https://www.bafu.admin.ch/bafu/de/home/themen/luft/fachinformationen/luftqualitaet-in-der-schweiz.html">(BAFU).</a> </p>
-                    <p> Im Folgenden wird auf diese Aussage eingegangen und anhand der interaktiven Visualisierung eine Analyse über die Luftqualitätsdaten vorgenommen. Zuerst wird auf den Luftschadstoff Ozon eingegangen und anschliessend wird ein Stadt - Land Vergleich aufgestellt. Mittels der Filterfunktion soll überprüft werden, ob ein Unterschied der Messresultate der verschiedenen Luftschadstoffen zwischen Stadt und Land besteht. Zuletzt sollen mögliche Differenzen zwischen den Jahren entdeckt werden. </p>
-                </div>
-                <div class="col-lg-12">
-                <h3>Ozon (O3)</h3>
-                    <p> In diesem Abschnitt wird auf den Luftschadstoff «Ozon» näher eingegangen. «Ozon (O3) ist ein Gas, das natürlicherweise in kleinsten Mengen in unserer Atemluft vorkommt. In der bodennahen Troposphäre wird Ozon unter Einwirkung des Sonnenlichts und den sogenannten Vorläufersubstanzen, nämlich den flüchtigen organischen Verbindungen (VOC, auch Kohlenwasserstoffe genannt) und dem Stickstoffdioxid (NO2) gebildet. Je mehr VOC und NO2 in der Luft sind und je stärker die Sonne scheint, umso mehr Ozon wird gebildet»  <a href="https://www.bafu.admin.ch/dam/bafu/de/dokumente/luft/fachinfo-daten/fragen_und_antwortenzusommersmogundozon.pdf.download.pdf/fragen_und_antwortenzusommersmogundozon.pdf">(BAFU, 2016, S. 2). </a></p>
-                    <p> Betrachtet man in der Visualisierung den Luftschadstoff «Ozon», wird ersichtlich, dass grosse Unterschiede bestehen. Die Werte erhöhen sich von 7.9 µg/m3 bis 96 µg/m3. Der tiefste Jahresmittelwert wurde bei der Bern-Bollwerkpasserelle 1991 gemessen. Dieser Standort ist städtisch und von Verkehr umgeben. Der höchste Wert wurde in der Wengeralp im Kanton Bern, in einer ländlichen Gegend, weder von Verkehr noch Industrie umgeben, im Jahre 1999 gemessen. Filtert man den Ozon nach hohen, beziehungsweise tiefen Werten, wird ersichtlich, dass städtische Gebiete kleinere Ozon Werte aufweisen wie Ländliche. <br>
-                    Dass städtische Gebiete tiefere Ozon Werte, wie ländliche Gebiete haben, scheint etwas paradox, da Ozon, wie in der Tabelle der Luftschadstoffe beschrieben, aus dem motorisierten Strassenverkehr und industriellen Prozessen stammt. Das ist jedoch tatsächlich der Fall. Das BAFU begründet dies mit dem Slogan:
-                    </p>
-                    <br>
-                    <p><strong>«Die Stadt macht’s, das Land hat’s.»</strong></p>
-                    <br>
-                    <p> Tagsüber steigt während einer mehrtägigen Smogperiode die Ozonbelastung stark an. In den Städten werden jedoch häufig tiefere Ozonwerte, wie auf dem Land gemessen. Grund dafür ist, dass das Stickstoffmonoxid (NO) im Bereich der Emissionsquelle, das Ozon abbaut und daraus Stickstoffdioxid (NO2) bildet. NO2 wird anschliessend vom Wind weggetrieben und ist die Vorläufersubstanz für die Ozonbildung ausserhalb städtischen Zentren. Das in den Städten tagsüber produzierte Ozon wird über Nacht fast vollständig abgebaut. Auf dem Land hingegen bleibt das Ozon weithin erhalten, da weniger andere Schadstoffe vorhanden sind, welche den Smog umwandeln. <a href="https://www.bafu.admin.ch/dam/bafu/de/dokumente/luft/fachinfo-daten/fragen_und_antwortenzusommersmogundozon.pdf.download.pdf/fragen_und_antwortenzusommersmogundozon.pdf">(BAFU, 2016). </a></p>
-                    
-              
-                <div class="col-lg-4 text-center">
-                    <h3>Ozon gesamt</h3>
-                    <img src="img/ozon_alles.png" alt="Ozon_alles" class="img-responsive" />
-                </div>
-                
-                <div class="col-lg-4 text-center">
-                    <h3>Ozon in der Stadt</h3>
-                    <img src="img/ozon_stadt.png" alt="Ozon_Stadt" class="img-responsive" />
-                </div>
-                
-                <div class="col-lg-4 text-center">
-                    <h3>Ozon auf dem Land</h3>
-                    <img src="img/ozon_land.png" alt="Ozon_Land" class="img-responsive" />
-                </div>
-                </div>
-                <div class="col-lg-12">
-                    <br>
-                <h3> Stadt-Land Vergleich</h3>
-                    <p> Ländliche Gebiete haben, wie bereits erklärt, höhere Ozon Werte als städtisch Gebiete. Das ist aber auch schon alles. Aufgrund anderer Luftschadstoffe ist die Atemluft in der Stadt insgesamt schlechter, wie auf dem Land. Städtische Gebiete sind unter anderem von höheren Stickoxidwerten (NOx) und einer höheren Menge an Feinstaub (PM10, PM1 und PM2) betroffen. Aber auch andere Luftschadstoffe sind mitverantwortlich für eine ersichtlich schlechtere Luftqualität als auf dem Land. Dazu gehören unter anderem: </p>
-                    
-                    <ul class="listsize">
-                        <li> Stickstoffdioxid </li>
-                        <li> Schwefeldioxid </li>
-                        <li> Schwebestaub </li>
-                        <li> Zink im Staubniederschlag </li>
-                        <li> Benzol </li>
-                        <li> Kohlenmonoxid </li>            
-                    
-                    </ul>
-                    <p>Schwefeldioxid beispielsweise zeichnet in städtischen Gebieten einige sehr hohe Werte auf. Die Spitzenreiter stammen aus diversen Städten, in denen die Messstationen von Verkehr und anderen Umgebungstypen, bzw. dem Hintergrund umgeben sind. Filtert man jedoch nach diesen Spitzenreitern, wird ersichtlich, dass diese Messungen vor langer Zeit erfolgten. Sie wurden in den Jahren 1985 bis 1990 aufgezeichnet. Aus diesem Grunde ist es für eine Interpretation relevant die Differenzen zwischen den Jahren zu betrachten. Dies wird in einem weiteren Schritt vorgenommen.</p>
-                     <p>Generell kann aber bestätigt werden, dass die Luftqualität, abgesehen vom Ozon auf dem Land besser ist, als in der Stadt. </p>
-                    
-                <div class="col-lg-12 text-center">
-                    <h3>städtische Stationen</h3>
-                    <img src="img/stadt_1140.png" alt="stadt" class="img-responsive" />
-                </div>
-                    <br>
-                <div class="col-lg-12 text-center">
-                    <h3>ländliche Stationen</h3>
-                    <img src="img/land_1140.png" alt="land" class="img-responsive" />
-                </div>
-                    
-                <div class="col-lg-12">
-                    <br>
-                    <h3> Luftqualität über die Jahre </h3>   
-                    <p> In einem letzten Punkt, wird die Aussage, dass sich die Luftqualität seit 1984 stetig verbessert hat anhand der Visualisierung überprüft. Dabei wird in einem kurzen Film die Veränderung der Luftqualitätsdaten von 1984 bis 2015 dargestellt. Es wird empfohlen sich besonders auf die Stickstoffdioxide, Schwefeldioxide und Stickoxide zu achten, da man bei diesen Schadstoffen von Auge einen grossen Unterschied bemerkt. Diese zeitliche Abfolge kann auch eigenständig in der Visualisierung ausgeführt werden, indem man die Jahre auf 1984 filtert und diese Filterfunktion langsam nach oben gegen das Jahr 2015 zieht. </p>
-                    
-                    <video width=100% controls>
-                    <source src="video/countdown_1140.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                    </video>
-                    <br>
-                    <br>
-                    <p>Betrachtet man bei dieser zeitlichen Abfolge die Luftschadstoffe einzel, fällt sofort auf, dass sich die Werte der Luftschadstoffe deutlich reduziert haben. Bei den Stickstoffdioxiden sind die Spitzenreiter drastisch zurückgegangen. 1984 wurde der höchste Wert mit 113 µg/m3 gemessen. 2015 weist das Maximum des Jahresmittelwertes 58 µg/m3 auf. Auch die Schwefeldioxide haben deutlich abgenommen. Im Jahre 2015 liegen die Mehrheit der Messungen im Bereich von 0-4 µg/m3 mit einem Ausreisser von 18 µg/m3, welcher in Bodio, TI, ein von Industrie geprägter Standort, gemessen wurde. 1985 waren die Schwefeldioxidwerte verstreut und gingen bis zu 54.6 µg/m3 hoch. Dieser Höchstwert 1985 wurde an der Zürich-Stampfenachstrasse gemessen. Der Schwebestaub insgesamt liegt seit dem Jahre 2000 unter 4 µg/m3, wobei seit 2005 dieser Schadstoff nicht mehr gemessen wurde. Auch der Feinstaub ist etwas gesunken, er wird jedoch vom BAFU immer noch als Problem angesehen, der in Zukunft noch weiter sinken sollte. Desweiteren sind auch die Werte der Luftschadstoffe Cadmium, Blei und Thalium im Staubniederschlag gesunken, sowie die Kohlenmonoxide und das Blei im Feinstaub und minimal das Cadmium im Feinstaub. </p>
-                    <p>Keinen grossen Unterschied ist bei Ozon und den Stickoxiden über die Jahre festzustellen. Sie bilden zusammen mit dem Feinstaub (PM10) die «Sorgen-Luftschadstoffe der Schweiz», da sie immer noch über den gesetzlichen Imissionsgrenzwerten stehen. Auch Ammoniak (NH3) liegt deutlich über dem kritischen Grenzwert und belastet die Umwelt.</p>
-                    <p>Zusammenfassend kann somit bestätigt werden, dass sich die Luftqualität in der Schweiz seit 1984 stetig gebessert hat. Bei vielen Luftschadstoffen ist eine deutliche Reduktion zu bemerken. Trotzdem muss die Luftqualität stets überprüft werden. Die Luftschadstoffen Feinstaub (PM10), Ozon (O3), Stickoxide (NOx), sowie auch Ammoniak (NH3), die weiterhin über den gesetzlichen Imissionsgrenzwerten stehen, belasten die Schweizer Luftqualität stark.</p>
-                    
-                    
-                    </div>
-             
-            <!-- Referneces -->       
-                <div class="col-lg-12">   
-                <h3>Quellen</h3>
-                <ol class="listsize">
-
-
-                    <li> 
-                        BAFU (2016). Sommersmog und Ozon. Retrieved May 30, 2017 from
-                            <a href="https://www.bafu.admin.ch/dam/bafu/de/dokumente/luft/fachinfo-daten/fragen_und_antwortenzusommersmogundozon.pdf.download.pdf/fragen_und_antwortenzusommersmogundozon.pdf">Bundesamt für Umwelt </a> 
-                    </li>
-                    <li> 
-                        BAFU (2017). Luftqualität in der Schweiz. Retrieved May 29, 2017 from
-                            <a href="https://www.bafu.admin.ch/bafu/de/home/themen/luft/fachinformationen/luftqualitaet-in-der-schweiz.html">Bundesamt für Umwelt</a>
-                    </li>
-                    <li> 
-                        Flaticon (2017). The largest database of free icons (...). Retrieved May 20, 2017 from
-                            <a href="http://www.flaticon.com/search?word=sun%20cloud&license=selection&order_by=1">Flaticon</a> 
-                    </li>
-                    <li> 
-                        Kai (2016). Kai's Block. Exoplanets. Retrieved April 20, 2017 from
-                            <a href="http://bl.ocks.org/syntagmatic/81569910d887d9c782fce11deac68f39">Kai's Block </a> 
-                    </li>
-                    <li> 
-                        Miller, David (2016). Start Bootstrap. Freelancer. Retrieved May 1, 2017 from
-                            <a href="https://startbootstrap.com/template-overviews/freelancer/">David Miller </a> 
-                    </li>
-                    </ol>
-                    </div>
-                        
-                    
-                </div>    
-            </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2>Interpretation
+            </h2>
+          </div>
         </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <br>
+            <p>Laut BAFU (Bundesamt für Umwelt) hat sich die Luftqualität in der Schweiz seit 1984 stetig gebessert. Drei Luftschadstoffe liegen aber immer noch über den gesetzlichen Immissionsgrenzwerten. Dazu gehören Ozon (O3), Stickoxide (NOx) und Feinstaub (PM10) 
+              <a href="https://www.bafu.admin.ch/bafu/de/home/themen/luft/fachinformationen/luftqualitaet-in-der-schweiz.html">(BAFU).
+              </a> 
+            </p>
+            <p> Im Folgenden wird auf diese Aussage eingegangen und anhand der interaktiven Visualisierung eine Analyse über die Luftqualitätsdaten vorgenommen. Zuerst wird auf den Luftschadstoff Ozon eingegangen und anschliessend wird ein Stadt - Land Vergleich aufgestellt. Mittels der Filterfunktion soll überprüft werden, ob ein Unterschied der Messresultate der verschiedenen Luftschadstoffen zwischen Stadt und Land besteht. Zuletzt sollen mögliche Differenzen zwischen den Jahren entdeckt werden. 
+            </p>
+          </div>
+          <div class="col-lg-12">
+            <h3>Ozon (O3)
+            </h3>
+            <p> In diesem Abschnitt wird auf den Luftschadstoff «Ozon» näher eingegangen. «Ozon (O3) ist ein Gas, das natürlicherweise in kleinsten Mengen in unserer Atemluft vorkommt. In der bodennahen Troposphäre wird Ozon unter Einwirkung des Sonnenlichts und den sogenannten Vorläufersubstanzen, nämlich den flüchtigen organischen Verbindungen (VOC, auch Kohlenwasserstoffe genannt) und dem Stickstoffdioxid (NO2) gebildet. Je mehr VOC und NO2 in der Luft sind und je stärker die Sonne scheint, umso mehr Ozon wird gebildet»  
+              <a href="https://www.bafu.admin.ch/dam/bafu/de/dokumente/luft/fachinfo-daten/fragen_und_antwortenzusommersmogundozon.pdf.download.pdf/fragen_und_antwortenzusommersmogundozon.pdf">(BAFU, 2016, S. 2). 
+              </a>
+            </p>
+            <p> Betrachtet man in der Visualisierung den Luftschadstoff «Ozon», wird ersichtlich, dass grosse Unterschiede bestehen. Die Werte erhöhen sich von 7.9 µg/m3 bis 96 µg/m3. Der tiefste Jahresmittelwert wurde bei der Bern-Bollwerkpasserelle 1991 gemessen. Dieser Standort ist städtisch und von Verkehr umgeben. Der höchste Wert wurde in der Wengeralp im Kanton Bern, in einer ländlichen Gegend, weder von Verkehr noch Industrie umgeben, im Jahre 1999 gemessen. Filtert man den Ozon nach hohen, beziehungsweise tiefen Werten, wird ersichtlich, dass städtische Gebiete kleinere Ozon Werte aufweisen wie Ländliche. 
+              <br>
+              Dass städtische Gebiete tiefere Ozon Werte, wie ländliche Gebiete haben, scheint etwas paradox, da Ozon, wie in der Tabelle der Luftschadstoffe beschrieben, aus dem motorisierten Strassenverkehr und industriellen Prozessen stammt. Das ist jedoch tatsächlich der Fall. Das BAFU begründet dies mit dem Slogan:
+            </p>
+            <br>
+            <p>
+              <strong>«Die Stadt macht’s, das Land hat’s.»
+              </strong>
+            </p>
+            <br>
+            <p> Tagsüber steigt während einer mehrtägigen Smogperiode die Ozonbelastung stark an. In den Städten werden jedoch häufig tiefere Ozonwerte, wie auf dem Land gemessen. Grund dafür ist, dass das Stickstoffmonoxid (NO) im Bereich der Emissionsquelle, das Ozon abbaut und daraus Stickstoffdioxid (NO2) bildet. NO2 wird anschliessend vom Wind weggetrieben und ist die Vorläufersubstanz für die Ozonbildung ausserhalb städtischen Zentren. Das in den Städten tagsüber produzierte Ozon wird über Nacht fast vollständig abgebaut. Auf dem Land hingegen bleibt das Ozon weithin erhalten, da weniger andere Schadstoffe vorhanden sind, welche den Smog umwandeln. 
+              <a href="https://www.bafu.admin.ch/dam/bafu/de/dokumente/luft/fachinfo-daten/fragen_und_antwortenzusommersmogundozon.pdf.download.pdf/fragen_und_antwortenzusommersmogundozon.pdf">(BAFU, 2016). 
+              </a>
+            </p>
+            <div class="col-lg-4 text-center">
+              <h3>Ozon gesamt
+              </h3>
+              <img src="img/ozon_alles.png" alt="Ozon_alles" class="img-responsive" />
+            </div>
+            <div class="col-lg-4 text-center">
+              <h3>Ozon in der Stadt
+              </h3>
+              <img src="img/ozon_stadt.png" alt="Ozon_Stadt" class="img-responsive" />
+            </div>
+            <div class="col-lg-4 text-center">
+              <h3>Ozon auf dem Land
+              </h3>
+              <img src="img/ozon_land.png" alt="Ozon_Land" class="img-responsive" />
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <br>
+            <h3> Stadt-Land Vergleich
+            </h3>
+            <p> Ländliche Gebiete haben, wie bereits erklärt, höhere Ozon Werte als städtisch Gebiete. Das ist aber auch schon alles. Aufgrund anderer Luftschadstoffe ist die Atemluft in der Stadt insgesamt schlechter, wie auf dem Land. Städtische Gebiete sind unter anderem von höheren Stickoxidwerten (NOx) und einer höheren Menge an Feinstaub (PM10, PM1 und PM2) betroffen. Aber auch andere Luftschadstoffe sind mitverantwortlich für eine ersichtlich schlechtere Luftqualität als auf dem Land. Dazu gehören unter anderem: 
+            </p>
+            <ul class="listsize">
+              <li> Stickstoffdioxid 
+              </li>
+              <li> Schwefeldioxid 
+              </li>
+              <li> Schwebestaub 
+              </li>
+              <li> Zink im Staubniederschlag 
+              </li>
+              <li> Benzol 
+              </li>
+              <li> Kohlenmonoxid 
+              </li>            
+            </ul>
+            <p>Schwefeldioxid beispielsweise zeichnet in städtischen Gebieten einige sehr hohe Werte auf. Die Spitzenreiter stammen aus diversen Städten, in denen die Messstationen von Verkehr und anderen Umgebungstypen, bzw. dem Hintergrund umgeben sind. Filtert man jedoch nach diesen Spitzenreitern, wird ersichtlich, dass diese Messungen vor langer Zeit erfolgten. Sie wurden in den Jahren 1985 bis 1990 aufgezeichnet. Aus diesem Grunde ist es für eine Interpretation relevant die Differenzen zwischen den Jahren zu betrachten. Dies wird in einem weiteren Schritt vorgenommen.
+            </p>
+            <p>Generell kann aber bestätigt werden, dass die Luftqualität, abgesehen vom Ozon auf dem Land besser ist, als in der Stadt. 
+            </p>
+            <div class="col-lg-12 text-center">
+              <h3>städtische Stationen
+              </h3>
+              <img src="img/stadt_1140.png" alt="stadt" class="img-responsive" />
+            </div>
+            <br>
+            <div class="col-lg-12 text-center">
+              <h3>ländliche Stationen
+              </h3>
+              <img src="img/land_1140.png" alt="land" class="img-responsive" />
+            </div>
+            <div class="col-lg-12">
+              <br>
+              <h3> Luftqualität über die Jahre 
+              </h3>   
+              <p> In einem letzten Punkt, wird die Aussage, dass sich die Luftqualität seit 1984 stetig verbessert hat anhand der Visualisierung überprüft. Dabei wird in einem kurzen Film die Veränderung der Luftqualitätsdaten von 1984 bis 2015 dargestellt. Es wird empfohlen sich besonders auf die Stickstoffdioxide, Schwefeldioxide und Stickoxide zu achten, da man bei diesen Schadstoffen von Auge einen grossen Unterschied bemerkt. Diese zeitliche Abfolge kann auch eigenständig in der Visualisierung ausgeführt werden, indem man die Jahre auf 1984 filtert und diese Filterfunktion langsam nach oben gegen das Jahr 2015 zieht. 
+              </p>
+              <video width=100% controls>
+                <source src="img/countdown_1140.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <br>
+              <br>
+              <p>Betrachtet man bei dieser zeitlichen Abfolge die Luftschadstoffe einzel, fällt sofort auf, dass sich die Werte der Luftschadstoffe deutlich reduziert haben. Bei den Stickstoffdioxiden sind die Spitzenreiter drastisch zurückgegangen. 1984 wurde der höchste Wert mit 113 µg/m3 gemessen. 2015 weist das Maximum des Jahresmittelwertes 58 µg/m3 auf. Auch die Schwefeldioxide haben deutlich abgenommen. Im Jahre 2015 liegen die Mehrheit der Messungen im Bereich von 0-4 µg/m3 mit einem Ausreisser von 18 µg/m3, welcher in Bodio, TI, ein von Industrie geprägter Standort, gemessen wurde. 1985 waren die Schwefeldioxidwerte verstreut und gingen bis zu 54.6 µg/m3 hoch. Dieser Höchstwert 1985 wurde an der Zürich-Stampfenachstrasse gemessen. Der Schwebestaub insgesamt liegt seit dem Jahre 2000 unter 4 µg/m3, wobei seit 2005 dieser Schadstoff nicht mehr gemessen wurde. Auch der Feinstaub ist etwas gesunken, er wird jedoch vom BAFU immer noch als Problem angesehen, der in Zukunft noch weiter sinken sollte. Desweiteren sind auch die Werte der Luftschadstoffe Cadmium, Blei und Thalium im Staubniederschlag gesunken, sowie die Kohlenmonoxide und das Blei im Feinstaub und minimal das Cadmium im Feinstaub. 
+              </p>
+              <p>Keinen grossen Unterschied ist bei Ozon und den Stickoxiden über die Jahre festzustellen. Sie bilden zusammen mit dem Feinstaub (PM10) die «Sorgen-Luftschadstoffe der Schweiz», da sie immer noch über den gesetzlichen Imissionsgrenzwerten stehen. Auch Ammoniak (NH3) liegt deutlich über dem kritischen Grenzwert und belastet die Umwelt.
+              </p>
+              <p>Zusammenfassend kann somit bestätigt werden, dass sich die Luftqualität in der Schweiz seit 1984 stetig gebessert hat. Bei vielen Luftschadstoffen ist eine deutliche Reduktion zu bemerken. Trotzdem muss die Luftqualität stets überprüft werden. Die Luftschadstoffen Feinstaub (PM10), Ozon (O3), Stickoxide (NOx), sowie auch Ammoniak (NH3), die weiterhin über den gesetzlichen Imissionsgrenzwerten stehen, belasten die Schweizer Luftqualität stark.
+              </p>
+            </div>
+            <!-- Referneces -->       
+            <div class="col-lg-12">   
+              <h3>Quellen
+              </h3>
+              <ol class="listsize">
+                <li> 
+                  BAFU (2016). Sommersmog und Ozon. Retrieved May 30, 2017 from
+                  <a href="https://www.bafu.admin.ch/dam/bafu/de/dokumente/luft/fachinfo-daten/fragen_und_antwortenzusommersmogundozon.pdf.download.pdf/fragen_und_antwortenzusommersmogundozon.pdf">Bundesamt für Umwelt 
+                  </a> 
+                </li>
+                <li> 
+                  BAFU (2017). Luftqualität in der Schweiz. Retrieved May 29, 2017 from
+                  <a href="https://www.bafu.admin.ch/bafu/de/home/themen/luft/fachinformationen/luftqualitaet-in-der-schweiz.html">Bundesamt für Umwelt
+                  </a>
+                </li>
+                <li> 
+                  Flaticon (2017). The largest database of free icons (...). Retrieved May 20, 2017 from
+                  <a href="http://www.flaticon.com/search?word=sun%20cloud&license=selection&order_by=1">Flaticon
+                  </a> 
+                </li>
+                <li> 
+                  Kai (2016). Kai's Block. Exoplanets. Retrieved April 20, 2017 from
+                  <a href="http://bl.ocks.org/syntagmatic/81569910d887d9c782fce11deac68f39">Kai's Block 
+                  </a> 
+                </li>
+                <li> 
+                  Miller, David (2016). Start Bootstrap. Freelancer. Retrieved May 1, 2017 from
+                  <a href="https://startbootstrap.com/template-overviews/freelancer/">David Miller 
+                  </a> 
+                </li>
+              </ol>
+            </div>
+          </div>    
+        </div>
+      </div>
     </section>
-	
-
-    
     <!-- Footer -->
     <footer class="text-center" id="contact">
-        <div class="footer-above">
-            <div class="container">
-                <div class="row">
-                    <div class="footer-col col-md-12">
-                        <h3>Kontakt</h3>
-                        <p>Stefanie Meili</p>
-                            <p>Studentin MSc Business Administration, Universität Bern</p>
-                    
-                     <a href=mailto:sm.opendata@gmail.com>E-Mail</a>
-                    </div>
-                </div>
+      <div class="footer-above">
+        <div class="container">
+          <div class="row">
+            <div class="footer-col col-md-12">
+              <h3>Kontakt
+              </h3>
+              <p>Stefanie Meili
+              </p>
+              <p>Studentin MSc Business Administration, Universität Bern
+              </p>
+              <a href=mailto:sm.opendata@gmail.com>E-Mail
+              </a>
             </div>
+          </div>
         </div>
-        <div class="footer-below">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <a rel="license" href="http://creativecommons.org/licenses/by/3.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/3.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported License</a>.
-                    </div>
-                </div>
+      </div>
+      <div class="footer-below">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">
+                <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/3.0/80x15.png" />
+              </a>
+              <br />This work is licensed under a 
+              <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported License
+              </a>.
             </div>
+          </div>
         </div>
+      </div>
     </footer>
-
     <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
     <div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">
-        <a class="btn btn-primary" href="#page-top">
-            <i class="fa fa-chevron-up"></i>
-        </a>
+      <a class="btn btn-primary" href="#page-top">
+        <i class="fa fa-chevron-up">
+        </i>
+      </a>
     </div>
-
-    
-
     <!-- jQuery -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-
+    <script src="vendor/jquery/jquery.min.js">
+    </script>
     <!-- Bootstrap Core JavaScript -->
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-
+    <script src="vendor/bootstrap/js/bootstrap.min.js">
+    </script>
     <!-- Plugin JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js">
+    </script>
     <!-- Contact Form JavaScript -->
-    <script src="js/jqBootstrapValidation.js"></script>
-    <script src="js/contact_me.js"></script>
-
+    <script src="js/jqBootstrapValidation.js">
+    </script>
+    <script src="js/contact_me.js">
+    </script>
     <!-- Theme JavaScript -->
-    <script src="js/freelancer.min.js"></script>
-
+    <script src="js/freelancer.min.js">
+    </script>
     <!-- D3 JS Visualization ***********************************************************************************************************************-->
-	<script src="js/d3.v3.js"></script>
-	<script src="js/render-queue.js"></script>
-	
-	<script>
-	  var filename = "data/airqualitydata.csv";
-			 
-		// Margins for canvas            
-		var margin = {top: 120, right: 80, bottom: 10, left: 80},
-			 // set width to clientWidth minus margins
-			 width = document.body.clientWidth - margin.left - margin.right,
-			 height = 600 - margin.top - margin.bottom,
-			 innerHeight = height - 2;
-
-		// ratio between physical pixel and CSS pixel
-		var devicePixelRatio = window.devicePixelRatio || 1;
-
-		var color = d3.scale.ordinal()
-		  .range(["#DB7F85", "#50AB84", "#4C6C86", "#C47DCB", "#B59248", "#DD6CA7", "#E15E5A", "#5DA5B3", "#725D82", "#54AF52", "#954D56", "#8C92E8", "#D8597D", "#AB9C27", "#D67D4B", "#D58323", "#BA89AD", "#357468", "#8F86C2", "#7D9E33", "#517C3F", "#9D5130", "#5E9ACF", "#776327", "#944F7E"]);
-
-        // define Swiss locales
-        var de_CH = d3.locale({
-            'decimal': '.',
-            'thousands': '\'',
-            'grouping': [3],
-            'currency': ['CHF', ''],
-            'dateTime': '%A, %d.%m.%Y, %X Uhr',
-            'date': '%d.%m.%Y',
-            'time': '%H:%M:%S',
-            'periods': ['AM', 'PM'],
-            'days': ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
-            'shortDays': ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
-            'months': ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
-            'shortMonths': ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez']
-        });
-        
-        // set Swiss locales for numbers
-        d3.format = de_CH.numberFormat;
-        
-        
-        // defining Number, String and Date
-		var types = {
-		  "Number": {
-			 key: "Number",
-			 coerce: function(d) { return +d; },
-			 extent: d3.extent,
-			 within: function(d, extent) { return extent[0] <= d && d <= extent[1]; },
-			 defaultScale: d3.scale.linear().range([innerHeight, 0])
-		  },
-		  "String": {
-			 key: "String",
-			 coerce: String,
-			 extent: function (data) { return data.sort(); },
-			 within: function(d, extent, dim) { return extent[0] <= dim.scale(d) && dim.scale(d) <= extent[1]; },
-			 defaultScale: d3.scale.ordinal().rangePoints([0, innerHeight])
-		  },
-		  "Date": {
-			 key: "Date",
-			 coerce: function(d) { return new Date(d); },
-			 extent: d3.extent,
-			 within: function(d, extent) { return extent[0] <= d && d <= extent[1]; },
-			 defaultScale: d3.time.scale().range([innerHeight, 0])
-		  }
-		};
-
-        // add all axis
-		var dimensions = [
-		  {
-			 key: "station_canton",
-			 description: "Kanton",
-			 type: types["String"],
-			 axis: d3.svg.axis().orient("left")
-			   .tickFormat(function(d,i) {
-				 return d;
-			   })
-		  },
-		  {
-			 key: "area_type_de",
-			 description: "area_type_de",
-			 type: types["String"],
-			 axis: d3.svg.axis().orient("left")
-			   .tickFormat(function(d,i) {
-				 return d;
-			   })
-		  },
-		  {
-			 key: "station_type_de",
-			 description: "station_type_de",
-			 type: types["String"],
-			 axis: d3.svg.axis().orient("left")
-			   .tickFormat(function(d,i) {
-				 return d;
-			   })
-		  },
-		  {
-			 key: "NO2",
-			 description: "Stickstoffdioxid (µg/m3)",
-			 type: types["Number"]
-		  },
-		  {
-			 key: "SO2",
-			 description: "Schwefeldioxid (µg/m3)",
-			 type: types["Number"]
-		  },
-		  {
-			 key: "TSP",
-			 description: "Schwebestaub insgesamt (µg/m3)",
-			 type: types["Number"]
-		  },
-		  {
-			 key: "NOx",
-			 description: "Stickoxide (ppb)",
-			 type: types["Number"]
-		  },
-		  {
-			 key: "O3",
-			 description: "Ozon (µg/m3)",
-			 type: types["Number"]
-		  },
-		  {
-			 key: "PM10",
-			 description: "Feinstaub PM10 (µg/m3)",
-			 type: types["Number"]
-		  },
-		  {
-			 key: "Cd im SN",
-			 description: "Cadmium im Staubniederschlag (µg/(m²·d))",
-			 type: types["Number"]
-		  },
-		  {
-			 key: "Pb im SN",
-			 description: "Blei im Staubniederschlag (µg/(m²·d))",
-			 type: types["Number"]
-		  },
-		  {
-			 key: "Staubniederschlag (SN)",
-			 description: "Staubniederschlag (mg/(m²·d))",
-			 type: types["Number"]
-		  },
-		  {
-			 key: "Tl im SN",
-			 description: "Thallium im Staubniederschlag (µg/(m²·d))",
-			 type: types["Number"]
-		  },
-		  {
-			 key: "Zn im SN",
-			 description: "Zink im Staubniederschlag (µg/(m²·d))",
-			 type: types["Number"]
-		  },
-		  {
-			 key: "Ammoniak",
-			 description: "Ammoniak (µg/m3)",
-			 type: types["Number"]
-		  },
-		  {
-			 key: "EC / Russ",
-			 description: "Elementarer Kohlenstoff gemessen gemäss EUSAAR2 (µg/m3)",
-			 type: types["Number"]
-		  },
-		  {
-			 key: "Benzol",
-			 description: "Benzol (µg/m3)",
-			 type: types["Number"]
-		  },
-		  {
-			 key: "NMVOC",
-			 description: "flüchtige Kohlenwasserstoffe ohne Methan (µg CH4/m3)",
-			 type: types["Number"]
-		  },
-		  {
-			 key: "Cd in PM10",
-			 description: "Cadmium im Feinstaub (ng/m3)",
-			 type: types["Number"]
-		  },
-		  {
-			 key: "CO",
-			 description: "Kohlemonoxid (mg/m3)",
-			 type: types["Number"]
-		  },
-		  {
-			 key: "Partikelanzahl",
-			 description: "Partikelanzahlkonzentration (1/cm3)",
-			 type: types["Number"]
-		  },
-		  {
-			 key: "Pb in PM10",
-			 description: "Blei im Feinstaub (ng/m3)",
-			 type: types["Number"]
-		  },
-		  {
-			 key: "PM1",
-			 description: "Feinstaub PM1 (µg/m3)",
-			 type: types["Number"]
-		  },
-		  {
-			 key: "PM2.5",
-			 description: "Feinstaub PM2,5 (µg/m3)",
-			 type: types["Number"]
-		  },
-		  {
-			 key: "Toluol",
-			 description: "Toluol (µg/m3)",
-			 type: types["Number"]
-		  },
-
-		  {
-			 key: "year",
-			 description: "Jahr",
-			 type: types["Number"],
-             axis: d3.svg.axis().orient("right")
-			     .tickFormat(de_CH.numberFormat("d"))
-		  }
-        		  
-		  /*{
+    <script src="js/d3.v3.js">
+    </script>
+    <script src="js/render-queue.js">
+    </script>
+    <script>
+      var filename = "data/airqualitydata.csv";
+      // Margins for canvas            
+      var margin = {
+        top: 120, right: 80, bottom: 10, left: 80}
+      ,
+          // set width to clientWidth minus margins
+          width = document.body.clientWidth - margin.left - margin.right,
+          height = 600 - margin.top - margin.bottom,
+          innerHeight = height - 2;
+      // ratio between physical pixel and CSS pixel
+      var devicePixelRatio = window.devicePixelRatio || 1;
+      var color = d3.scale.ordinal()
+      .range(["#DB7F85", "#50AB84", "#4C6C86", "#C47DCB", "#B59248", "#DD6CA7", "#E15E5A", "#5DA5B3", "#725D82", "#54AF52", "#954D56", "#8C92E8", "#D8597D", "#AB9C27", "#D67D4B", "#D58323", "#BA89AD", "#357468", "#8F86C2", "#7D9E33", "#517C3F", "#9D5130", "#5E9ACF", "#776327", "#944F7E"]);
+      // define Swiss locales
+      var de_CH = d3.locale({
+        'decimal': '.',
+        'thousands': '\'',
+        'grouping': [3],
+        'currency': ['CHF', ''],
+        'dateTime': '%A, %d.%m.%Y, %X Uhr',
+        'date': '%d.%m.%Y',
+        'time': '%H:%M:%S',
+        'periods': ['AM', 'PM'],
+        'days': ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
+        'shortDays': ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
+        'months': ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
+        'shortMonths': ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez']
+      }
+                           );
+      // set Swiss locales for numbers
+      d3.format = de_CH.numberFormat;
+      // defining Number, String and Date
+      var types = {
+        "Number": {
+          key: "Number",
+          coerce: function(d) {
+            return +d;
+          }
+          ,
+          extent: d3.extent,
+          within: function(d, extent) {
+            return extent[0] <= d && d <= extent[1];
+          }
+          ,
+          defaultScale: d3.scale.linear().range([innerHeight, 0])
+        }
+        ,
+        "String": {
+          key: "String",
+          coerce: String,
+          extent: function (data) {
+            return data.sort();
+          }
+          ,
+          within: function(d, extent, dim) {
+            return extent[0] <= dim.scale(d) && dim.scale(d) <= extent[1];
+          }
+          ,
+          defaultScale: d3.scale.ordinal().rangePoints([0, innerHeight])
+        }
+        ,
+        "Date": {
+          key: "Date",
+          coerce: function(d) {
+            return new Date(d);
+          }
+          ,
+          extent: d3.extent,
+          within: function(d, extent) {
+            return extent[0] <= d && d <= extent[1];
+          }
+          ,
+          defaultScale: d3.time.scale().range([innerHeight, 0])
+        }
+      };
+      // add all axis
+      var dimensions = [
+        {
+          key: "station_canton",
+          description: "Kanton",
+          type: types["String"],
+          axis: d3.svg.axis().orient("left")
+          .tickFormat(function(d,i) {
+            return d;
+          }
+                     )
+        }
+        ,
+        {
+          key: "area_type_de",
+          description: "area_type_de",
+          type: types["String"],
+          axis: d3.svg.axis().orient("left")
+          .tickFormat(function(d,i) {
+            return d;
+          }
+                     )
+        }
+        ,
+        {
+          key: "station_type_de",
+          description: "station_type_de",
+          type: types["String"],
+          axis: d3.svg.axis().orient("left")
+          .tickFormat(function(d,i) {
+            return d;
+          }
+                     )
+        }
+        ,
+        {
+          key: "NO2",
+          description: "Stickstoffdioxid (µg/m3)",
+          type: types["Number"]
+        }
+        ,
+        {
+          key: "SO2",
+          description: "Schwefeldioxid (µg/m3)",
+          type: types["Number"]
+        }
+        ,
+        {
+          key: "TSP",
+          description: "Schwebestaub insgesamt (µg/m3)",
+          type: types["Number"]
+        }
+        ,
+        {
+          key: "NOx",
+          description: "Stickoxide (ppb)",
+          type: types["Number"]
+        }
+        ,
+        {
+          key: "O3",
+          description: "Ozon (µg/m3)",
+          type: types["Number"]
+        }
+        ,
+        {
+          key: "PM10",
+          description: "Feinstaub PM10 (µg/m3)",
+          type: types["Number"]
+        }
+        ,
+        {
+          key: "Cd im SN",
+          description: "Cadmium im Staubniederschlag (µg/(m²·d))",
+          type: types["Number"]
+        }
+        ,
+        {
+          key: "Pb im SN",
+          description: "Blei im Staubniederschlag (µg/(m²·d))",
+          type: types["Number"]
+        }
+        ,
+        {
+          key: "Staubniederschlag (SN)",
+          description: "Staubniederschlag (mg/(m²·d))",
+          type: types["Number"]
+        }
+        ,
+        {
+          key: "Tl im SN",
+          description: "Thallium im Staubniederschlag (µg/(m²·d))",
+          type: types["Number"]
+        }
+        ,
+        {
+          key: "Zn im SN",
+          description: "Zink im Staubniederschlag (µg/(m²·d))",
+          type: types["Number"]
+        }
+        ,
+        {
+          key: "Ammoniak",
+          description: "Ammoniak (µg/m3)",
+          type: types["Number"]
+        }
+        ,
+        {
+          key: "EC / Russ",
+          description: "Elementarer Kohlenstoff gemessen gemäss EUSAAR2 (µg/m3)",
+          type: types["Number"]
+        }
+        ,
+        {
+          key: "Benzol",
+          description: "Benzol (µg/m3)",
+          type: types["Number"]
+        }
+        ,
+        {
+          key: "NMVOC",
+          description: "flüchtige Kohlenwasserstoffe ohne Methan (µg CH4/m3)",
+          type: types["Number"]
+        }
+        ,
+        {
+          key: "Cd in PM10",
+          description: "Cadmium im Feinstaub (ng/m3)",
+          type: types["Number"]
+        }
+        ,
+        {
+          key: "CO",
+          description: "Kohlemonoxid (mg/m3)",
+          type: types["Number"]
+        }
+        ,
+        {
+          key: "Partikelanzahl",
+          description: "Partikelanzahlkonzentration (1/cm3)",
+          type: types["Number"]
+        }
+        ,
+        {
+          key: "Pb in PM10",
+          description: "Blei im Feinstaub (ng/m3)",
+          type: types["Number"]
+        }
+        ,
+        {
+          key: "PM1",
+          description: "Feinstaub PM1 (µg/m3)",
+          type: types["Number"]
+        }
+        ,
+        {
+          key: "PM2.5",
+          description: "Feinstaub PM2,5 (µg/m3)",
+          type: types["Number"]
+        }
+        ,
+        {
+          key: "Toluol",
+          description: "Toluol (µg/m3)",
+          type: types["Number"]
+        }
+        ,
+        {
+          key: "year",
+          description: "Jahr",
+          type: types["Number"],
+          axis: d3.svg.axis().orient("right")
+          .tickFormat(de_CH.numberFormat("d"))
+        }
+        /*{
 			 key: "st_spstr",
 			 description: "Star Spectral Type",
 			 type: types["String"],
@@ -751,224 +888,226 @@
 			 scale: d3.scale.sqrt().range([innerHeight, 0])
 		  },
 		  */
-
-		];
-
-		// defining xScale
-		var xscale = d3.scale.ordinal()
-			 .domain(d3.range(dimensions.length))
-			 .rangePoints([0, width]);
-
-		var yAxis = d3.svg.axis()
-			 .orient("left");
-
-		var container = d3.select("#figurediv").append("div")
-			 .attr("class", "parcoords")
-			 .style("width", width + margin.left + margin.right + "px")
-			 .style("height", height + margin.top + margin.bottom + "px");
-
-		var svg = container.append("svg")
-			 .attr("width", width + margin.left + margin.right)
-			 .attr("height", height + margin.top + margin.bottom)
-			 .append("g")
-			 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-		var canvas = container.append("canvas")
-			 .attr("width", width * devicePixelRatio)
-			 .attr("height", height * devicePixelRatio)
-			 .style("width", width + "px")
-			 .style("height", height + "px")
-			 .style("margin-top", margin.top + "px")
-			 .style("margin-left", margin.left + "px");
-
-		// defining lineWidth, canvas.node
-		var ctx = canvas.node().getContext("2d");
-		ctx.globalCompositeOperation = 'darken';
-		ctx.globalAlpha = 0.15;
-		ctx.lineWidth = 1.5;
-		ctx.scale(devicePixelRatio, devicePixelRatio);
-
-		// Table
-       	var output = d3.select("#tablediv").append("pre");
-
-		var axes = svg.selectAll(".axis")
-			 .data(dimensions)
-			 .enter()
-			 .append("g")
-			 .attr("class", function(d) { return "axis " + d.key.replace(/ /g, "_"); })
-		.attr("height",400)
-			 .attr("transform", function(d,i) { return "translate(" + xscale(i) + ")"; });
-
-		function drawD3() {
-			d3.csv(filename, function(error, data) {
-				if (error) throw error;
-			  
-				data.forEach(function(d) {
-				 dimensions.forEach(function(p) {
-				   d[p.key] = !d[p.key] ? null : p.type.coerce(d[p.key]);
-				 });
-			  
-				 // truncate long text strings to fit in data table
-				 for (var key in d) {
-				   if (d[key] && d[key].length > 35) d[key] = d[key].slice(0,36);
-				 }
-				});
-			  
-				// type/dimension default setting happens here
-				dimensions.forEach(function(dim) {
-				 if (!("domain" in dim)) {
-				   // detect domain using dimension type's extent function
-				   dim.domain = d3.functor(dim.type.extent)(data.map(function(d) { return d[dim.key]; }));
-				 }
-				 if (!("scale" in dim)) {
-				    // use type's default scale for dimension
-				   dim.scale = dim.type.defaultScale.copy();
-				 }
-				 dim.scale.domain(dim.domain);
-				});
-			  
-				// Drawing speed of lines
-				var render = renderQueue(draw).rate(30);
-			  
-				ctx.clearRect(0,0,width,height);
-				ctx.globalAlpha = d3.min([0.85/Math.pow(data.length,0.3),1]);
-				render(data);
-				
-				axes.append("g")
-				   .each(function(d) {
-					 var renderAxis = "axis" in d
-					   ? d.axis.scale(d.scale)  // custom axis
-					   : yAxis.scale(d.scale);  // default axis
-					 d3.select(this).call(renderAxis);
-				   })
-				 .append("text")
-				   .attr("class", "title")
-				   .attr("text-anchor", "start")
-				   .text(function(d) { return "description" in d ? d.description : d.key; });
-			  
-				// Add and store a brush for each axis.
-				axes.append("g")
-				   .attr("class", "brush")
-				   .each(function(d) {
-					 d3.select(this).call(d.brush = d3.svg.brush()
-					   .y(d.scale)
-					   .on("brushstart", brushstart)
-					   .on("brush", brush));
-				   })
-				 .selectAll("rect")
-				   .attr("x", -8)
-				   .attr("width", 16);
-			  
-				d3.selectAll(".axis.station_canton .tick text")
-				 .style("fill", color);
-				 
-				output.text(d3.tsv.format(data.slice(0,24)));
-			  
-				function project(d) {
-				 return dimensions.map(function(p,i) {
-				   // check if data element has property and contains a value
-				   if (
-					 !(p.key in d) ||
-					 d[p.key] === null
-				   ) return null;
-				   return [xscale(i),p.scale(d[p.key])];
-				 });
-				};
-			  
-				function draw(d) {
-				 ctx.strokeStyle = color(d.station_canton);
-				 ctx.beginPath();
-				 var coords = project(d);
-				 coords.forEach(function(p,i) {
-				   // this tricky bit avoids rendering null values as 0
-				   if (p === null) {
-					 // this bit renders horizontal lines on the previous/next
-					 // dimensions, so that sandwiched null values are visible
-					 if (i > 0) {
-					   var prev = coords[i-1];
-					   if (prev !== null) {
-						 ctx.moveTo(prev[0],prev[1]);
-						 ctx.lineTo(prev[0]+6,prev[1]);
-					   }
-					 }
-					 if (i < coords.length-1) {
-					   var next = coords[i+1];
-					   if (next !== null) {
-						 ctx.moveTo(next[0]-6,next[1]);
-					   }
-					 }
-					 return;
-				   }
-				   
-				   if (i == 0) {
-					 ctx.moveTo(p[0],p[1]);
-					 return;
-				   }
-			  
-				   ctx.lineTo(p[0],p[1]);
-				 });
-				 ctx.stroke();
-				}
-			  
-				function brushstart() {
-				 d3.event.sourceEvent.stopPropagation();
-				}
-			  
-				// Handles a brush event, toggling the display of foreground lines.
-				function brush() {
-				 var actives = dimensions.filter(function(p) { return !p.brush.empty(); }),
-					 extents = actives.map(function(p) { return p.brush.extent(); });
-			  
-				 var selected = data.filter(function(d) {
-				   if (actives.every(function(dim, i) {
-					   // test if point is within extents for each active brush
-					   return dim.type.within(d[dim.key], extents[i], dim);
-					 })) {
-					 return true;
-				   }
-				 });
-			  
-				 // show ticks for active brush dimensions
-				 // and filter ticks to only those within brush extents
-				 svg.selectAll(".axis")
-					 .filter(function(d) {
-					   return actives.indexOf(d) > -1 ? true : false;
-					 })
-					 .classed("active", true)
-					 .each(function(dimension, i) {
-					   var extent = extents[i];
-					   d3.select(this)
-						 .selectAll(".tick text")
-						 .style("display", function(d) {
-						   var value = dimension.type.coerce(d);
-						   return dimension.type.within(value, extent, dimension) ? null : "none";
-						 });
-					 });
-			  
-				 // reset dimensions without active brushes
-				 svg.selectAll(".axis")
-					 .filter(function(d) {
-					   return actives.indexOf(d) > -1 ? false : true;
-					 })
-					 .classed("active", false)
-					 .selectAll(".tick text")
-					   .style("display", null);
-			  
-				 ctx.clearRect(0,0,width,height);
-				 ctx.globalAlpha = d3.min([0.85/Math.pow(selected.length,0.3),1]);
-				 render(selected);
-			  
-				 output.text(d3.tsv.format(selected.slice(0,24)));
-				}
-			});
-		};
-	  //**********************************************
-        // When the window is loaded, create the game.
-        //**********************************************
-        window.onload = function () {
-            drawD3();
+      ];
+      // defining xScale
+      var xscale = d3.scale.ordinal()
+      .domain(d3.range(dimensions.length))
+      .rangePoints([0, width]);
+      var yAxis = d3.svg.axis()
+      .orient("left");
+      var container = d3.select("#figurediv").append("div")
+      .attr("class", "parcoords")
+      .style("width", width + margin.left + margin.right + "px")
+      .style("height", height + margin.top + margin.bottom + "px");
+      var svg = container.append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+      var canvas = container.append("canvas")
+      .attr("width", width * devicePixelRatio)
+      .attr("height", height * devicePixelRatio)
+      .style("width", width + "px")
+      .style("height", height + "px")
+      .style("margin-top", margin.top + "px")
+      .style("margin-left", margin.left + "px");
+      // defining lineWidth, canvas.node
+      var ctx = canvas.node().getContext("2d");
+      ctx.globalCompositeOperation = 'darken';
+      ctx.globalAlpha = 0.15;
+      ctx.lineWidth = 1.5;
+      ctx.scale(devicePixelRatio, devicePixelRatio);
+      // Table
+      var output = d3.select("#tablediv").append("pre");
+      var axes = svg.selectAll(".axis")
+      .data(dimensions)
+      .enter()
+      .append("g")
+      .attr("class", function(d) {
+        return "axis " + d.key.replace(/ /g, "_");
+      }
+           )
+      .attr("height",400)
+      .attr("transform", function(d,i) {
+        return "translate(" + xscale(i) + ")";
+      }
+           );
+      function drawD3() {
+        d3.csv(filename, function(error, data) {
+          if (error) throw error;
+          data.forEach(function(d) {
+            dimensions.forEach(function(p) {
+              d[p.key] = !d[p.key] ? null : p.type.coerce(d[p.key]);
+            }
+                              );
+            // truncate long text strings to fit in data table
+            for (var key in d) {
+              if (d[key] && d[key].length > 35) d[key] = d[key].slice(0,36);
+            }
+          }
+                      );
+          // type/dimension default setting happens here
+          dimensions.forEach(function(dim) {
+            if (!("domain" in dim)) {
+              // detect domain using dimension type's extent function
+              dim.domain = d3.functor(dim.type.extent)(data.map(function(d) {
+                return d[dim.key];
+              }
+                                                               ));
+            }
+            if (!("scale" in dim)) {
+              // use type's default scale for dimension
+              dim.scale = dim.type.defaultScale.copy();
+            }
+            dim.scale.domain(dim.domain);
+          }
+                            );
+          // Drawing speed of lines
+          var render = renderQueue(draw).rate(30);
+          ctx.clearRect(0,0,width,height);
+          ctx.globalAlpha = d3.min([0.85/Math.pow(data.length,0.3),1]);
+          render(data);
+          axes.append("g")
+            .each(function(d) {
+            var renderAxis = "axis" in d
+            ? d.axis.scale(d.scale)  // custom axis
+            : yAxis.scale(d.scale);
+            // default axis
+            d3.select(this).call(renderAxis);
+          }
+                 )
+            .append("text")
+            .attr("class", "title")
+            .attr("text-anchor", "start")
+            .text(function(d) {
+            return "description" in d ? d.description : d.key;
+          }
+                 );
+          // Add and store a brush for each axis.
+          axes.append("g")
+            .attr("class", "brush")
+            .each(function(d) {
+            d3.select(this).call(d.brush = d3.svg.brush()
+                                 .y(d.scale)
+                                 .on("brushstart", brushstart)
+                                 .on("brush", brush));
+          }
+                 )
+            .selectAll("rect")
+            .attr("x", -8)
+            .attr("width", 16);
+          d3.selectAll(".axis.station_canton .tick text")
+            .style("fill", color);
+          output.text(d3.tsv.format(data.slice(0,24)));
+          function project(d) {
+            return dimensions.map(function(p,i) {
+              // check if data element has property and contains a value
+              if (
+                !(p.key in d) ||
+                d[p.key] === null
+              ) return null;
+              return [xscale(i),p.scale(d[p.key])];
+            }
+                                 );
+          };
+          function draw(d) {
+            ctx.strokeStyle = color(d.station_canton);
+            ctx.beginPath();
+            var coords = project(d);
+            coords.forEach(function(p,i) {
+              // this tricky bit avoids rendering null values as 0
+              if (p === null) {
+                // this bit renders horizontal lines on the previous/next
+                // dimensions, so that sandwiched null values are visible
+                if (i > 0) {
+                  var prev = coords[i-1];
+                  if (prev !== null) {
+                    ctx.moveTo(prev[0],prev[1]);
+                    ctx.lineTo(prev[0]+6,prev[1]);
+                  }
+                }
+                if (i < coords.length-1) {
+                  var next = coords[i+1];
+                  if (next !== null) {
+                    ctx.moveTo(next[0]-6,next[1]);
+                  }
+                }
+                return;
+              }
+              if (i == 0) {
+                ctx.moveTo(p[0],p[1]);
+                return;
+              }
+              ctx.lineTo(p[0],p[1]);
+            }
+                          );
+            ctx.stroke();
+          }
+          function brushstart() {
+            d3.event.sourceEvent.stopPropagation();
+          }
+          // Handles a brush event, toggling the display of foreground lines.
+          function brush() {
+            var actives = dimensions.filter(function(p) {
+              return !p.brush.empty();
+            }
+                                           ),
+                extents = actives.map(function(p) {
+                  return p.brush.extent();
+                }
+                                     );
+            var selected = data.filter(function(d) {
+              if (actives.every(function(dim, i) {
+                // test if point is within extents for each active brush
+                return dim.type.within(d[dim.key], extents[i], dim);
+              }
+                               )) {
+                return true;
+              }
+            }
+                                      );
+            // show ticks for active brush dimensions
+            // and filter ticks to only those within brush extents
+            svg.selectAll(".axis")
+              .filter(function(d) {
+              return actives.indexOf(d) > -1 ? true : false;
+            }
+                     )
+              .classed("active", true)
+              .each(function(dimension, i) {
+              var extent = extents[i];
+              d3.select(this)
+                .selectAll(".tick text")
+                .style("display", function(d) {
+                var value = dimension.type.coerce(d);
+                return dimension.type.within(value, extent, dimension) ? null : "none";
+              }
+                      );
+            }
+                   );
+            // reset dimensions without active brushes
+            svg.selectAll(".axis")
+              .filter(function(d) {
+              return actives.indexOf(d) > -1 ? false : true;
+            }
+                     )
+              .classed("active", false)
+              .selectAll(".tick text")
+              .style("display", null);
+            ctx.clearRect(0,0,width,height);
+            ctx.globalAlpha = d3.min([0.85/Math.pow(selected.length,0.3),1]);
+            render(selected);
+            output.text(d3.tsv.format(selected.slice(0,24)));
+          }
         }
-      </script>
-</body>
-
+              );
+      };
+      //**********************************************
+      // When the window is loaded, create the game.
+      //**********************************************
+      window.onload = function () {
+        drawD3();
+      }
+    </script>
+  </body>
 </html>
